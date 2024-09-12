@@ -1,11 +1,3 @@
-<a href="https://emplify-software.de/">
-    <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="resources/img/emplify_software_logo_dark.svg"/>
-        <source media="(prefers-color-scheme: light)" srcset="resources/img/emplify_software_logo_light.svg"/>
-        <img height="60" src="resources/img/emplify_software_logo_light.svg">
-    </picture>
-</a>
-
 # Statamic Cookie Dialog
 
 [![Statamic v4](https://img.shields.io/badge/Statamic-4.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
@@ -317,4 +309,4 @@ will automatically be hidden when you buy the pro version of this addon.
 
 This addon is actively maintained and supported by [emplify software](https://emplify-software.de/). If you encounter
 any issues, feel free to open an issue on
-the [GitHub repository](https://github.com/emplify-software/statamic-cookie-dialog)
+the [GitHub repository](https://github.com/emplify-software/statamic-cookie-dialog).
