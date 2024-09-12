@@ -7,6 +7,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Statamic\Facades\Addon;
 use Statamic\Facades\YAML;
 use Statamic\Http\Controllers\CP\CpController;
 
@@ -26,10 +27,14 @@ class CookieDialogController extends CpController
 
         $fields = $blueprint->fields()->addValues($values)->preProcess();
 
+        $addon = Addon::get('emplify-software/statamic-cookie-dialog');
+        $isProEdition = $addon->edition() === 'pro';
+
         return view('cookie-dialog::cp.cookie_dialog', [
             'blueprint' => $blueprint->toPublishArray(),
             'values' => $fields->values(),
             'meta' => $fields->meta(),
+            'isProEdition' => $isProEdition,
         ]);
     }
 
