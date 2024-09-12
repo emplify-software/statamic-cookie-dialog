@@ -1,8 +1,8 @@
 <a href="https://emplify-software.de/">
     <picture>
-        <source media="(prefers-color-scheme: dark)" srcset="./resources/img/emplify_software_logo_dark.svg"/>
-        <source media="(prefers-color-scheme: light)" srcset="./resources/img/emplify_software_logo_light.svg"/>
-        <img height="60" src="./resources/img/emplify_software_logo_light.svg">
+        <source media="(prefers-color-scheme: dark)" srcset="resources/img/emplify_software_logo_dark.svg"/>
+        <source media="(prefers-color-scheme: light)" srcset="resources/img/emplify_software_logo_light.svg"/>
+        <img height="60" src="resources/img/emplify_software_logo_light.svg">
     </picture>
 </a>
 
@@ -14,7 +14,7 @@
 Manage cookie preferences in your Statamic projects with ease.
 
 
-<img src="https://github.com/emplify-software/statamic-cookie-dialog/blob/main/resources/img/cookie-dialog.jpg">
+<img src="resources/img/cookie-dialog.jpg">
 
 ## Features
 
@@ -73,7 +73,7 @@ A description text and an example cookie group is provided by default.
 You have full control over the dialog content and all cookie settings in the control panel under
 `Tools > Cookie Dialog`.
 
-<img src="https://github.com/emplify-software/statamic-cookie-dialog/blob/main/resources/img/cp-screenshot.png">
+<img src="resources/img/cp-screenshot.png">
 
 In the **"Cookies"** tab, you can enable or disable the cookie dialog, set the [cookie version](#-cookie-versioning),
 and create or edit cookie groups.
