@@ -41,6 +41,11 @@ After the addon is installed, publish the cookie assets by running:
 php artisan vendor:publish --tag=statamic-cookie-dialog
 ```
 
+## ⭐️ Pro Version
+
+You can buy the pro version of this addon on the [Statamic Marketplace](https://statamic.com/addons/emplify-software/cookie-dialog).
+When the pro version is enabled, the [attribution link to emplify software GmbH](#-license) will be hidden.
+
 ## 💡 How to Use
 
 To enable the cookie dialog for all pages, put the following tag anywhere in your `layout.antlers.html` file:
@@ -303,7 +308,7 @@ you a short overview, here are the main points:
 - Redistribute the Software in any form, whether modified or unmodified, to any third party
 
 The attribution link to emplify software GmbH on the bottom of the cookie dialog
-will automatically be hidden when you buy the pro version of this addon.
+will automatically be hidden when you buy the [pro version](https://statamic.com/addons/emplify-software/cookie-dialog) of this addon.
 
 ## 🛟 Support
 
