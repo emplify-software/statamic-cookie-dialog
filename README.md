@@ -278,6 +278,9 @@ you a short overview, here are the main points:
 - Remove or obscure the required attribution link to emplify software GmbH without explicit permission
 - Redistribute the Software in any form, whether modified or unmodified, to any third party
 
+The attribution link to emplify software GmbH on the bottom of the cookie dialog
+will automatically be hidden when you buy the pro version of this addon.
+
 ## 🛟 Support
 
 This addon is actively maintained and supported by [emplify software](https://emplify-software.de/). If you encounter
