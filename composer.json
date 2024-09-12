@@ -14,7 +14,7 @@
     "extra": {
         "statamic": {
             "name": "Cookie Dialog",
-            "description": "A comprehensive cookie dialog for your Statamic application to manage cookie groups and their respective cookies with ease.",
+            "description": "A comprehensive cookie dialog for your Statamic site to manage cookie groups and their respective cookies with ease.",
             "editions": ["free", "pro"]
         },
         "laravel": {
