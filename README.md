@@ -14,7 +14,7 @@
 Manage cookie preferences in your Statamic projects with ease.
 
 
-<img src="resources/img/cookie-dialog.jpg">
+<img src="https://github.com/emplify-software/statamic-cookie-dialog/blob/main/resources/img/cookie-dialog.jpg">
 
 ## Features
 
@@ -22,13 +22,13 @@ This addon provides a customizable cookie dialog that allows your users to accep
 defined cookie groups and individual cookies. You, on the other hand, show or block content dynamically based on the
 user's cookie preferences.
 
-:white_check_mark: Cookie dialog with customizable content<br>
-:white_check_mark: Customizable cookie groups and cookies<br>
-:white_check_mark: Tag to render content dynamically based on cookie preferences<br>
-:white_check_mark: Tag to render fallback content if a given cookie is declined<br>
-:white_check_mark: Cookie versioning<br>
-:white_check_mark: JavaScript API<br>
-:white_check_mark: Multi-Site Support<br>
+✅ Cookie dialog with customizable content<br>
+✅ Customizable cookie groups and cookies<br>
+✅ Tag to render content dynamically based on cookie preferences<br>
+✅ Tag to render fallback content if a given cookie is declined<br>
+✅ Cookie versioning<br>
+✅ JavaScript API<br>
+✅ Multi-Site Support<br>
 
 > [!NOTE]
 > This addon does not guarantee GDPR compliance. Please consult with a legal expert to ensure that your website is
@@ -73,7 +73,7 @@ A description text and an example cookie group is provided by default.
 You have full control over the dialog content and all cookie settings in the control panel under
 `Tools > Cookie Dialog`.
 
-<img src="./resources/img/cp-screenshot.png">
+<img src="https://github.com/emplify-software/statamic-cookie-dialog/blob/main/resources/img/cp-screenshot.png">
 
 In the **"Cookies"** tab, you can enable or disable the cookie dialog, set the [cookie version](#-cookie-versioning),
 and create or edit cookie groups.
@@ -224,7 +224,7 @@ You can explicitly override this default reload behaviour:
 CookieDialog.showDialog(false) // Prevent page reload after saving cookie preferences
 ```
 
-For GDPR compliance, we recommend putting a button or link on your website that allows the user to change their cookie
+We recommend putting a button or link on your website that allows the user to change their cookie
 preferences at any time. This can be done by calling `CookieDialog.showDialog()` when the button is clicked:
 
 ```html
@@ -299,13 +299,13 @@ In the translation file, you can define the mapping of the default English texts
 You may use this addon free of charge under the terms and conditions of the [License Agreement](./LICENSE.md). To give
 you a short overview, here are the main points:
 
-### :white_check_mark: You can:
+### ✅ You can:
 
 - Use the Software on your own websites or on websites that you build for clients for both non-commercial and
   commercial purposes
 - Modify the Software for your own use or for use on websites that you build for clients
 
-### :x: You cannot:
+### ❌ You cannot:
 
 - Remove or obscure the required attribution link to emplify software GmbH without explicit permission
 - Redistribute the Software in any form, whether modified or unmodified, to any third party
