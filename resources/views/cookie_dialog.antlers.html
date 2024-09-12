@@ -87,13 +87,13 @@
                                         {{ trans :key="description" }}
                                     </div>
                                 {{  /if }}
-                                {{ if cookie_fields | length }}
+                                {{ if cookies | length }}
                                 <details class="es-mt-3 es-mb-5 es-text-sm">
                                     <summary class="es-cursor-pointer">
-                                        {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookie_fields | length }}</span>)</span>
+                                        {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
                                     </summary>
                                     <ul class="es-flex es-flex-col es-gap-3 es-mt-4">
-                                        {{ cookie_fields }}
+                                        {{ cookies }}
                                             <li class="es-text-gray-500 dark:es-text-gray-300" data-cookie="{{ cookie_identifier }}">
                                                 <div class="es-flex es-flex-col es-justify-between">
                                                     <div>
@@ -127,7 +127,7 @@
 
                                                 </div>
                                             </li>
-                                        {{ /cookie_fields }}
+                                        {{ /cookies }}
                                     </ul>
                                 </details>
                                 {{ /if }}
@@ -138,7 +138,7 @@
 
             </section>
 
-            <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8 {{ if !$isProEdition }}es-pb-0 md:es-pb-0{{ /if }}">
+            <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
                 <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
                     <button autofocus id="accept-all-btn" class="es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
                         {{ trans :key="data:accept_all" }}
@@ -150,7 +150,7 @@
             </section>
 
             {{ if !$isProEdition }}
-                <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-py-6 es-text-sm">
+                <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-pb-6 es-text-sm">
                     Powered by <a class="es-text-gray-500 dark:es-text-gray-400 es-underline es-underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
                 </section>
             {{ /if }}

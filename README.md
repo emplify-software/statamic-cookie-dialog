@@ -162,6 +162,38 @@ The content inside the `{{ cookie:denied }}` tag will be dynamically removed onc
 > in a group are selected, the group toggle is automatically activated to indicate to the user that they have accepted a
 > cookie from this group, but the group is not considered allowed until all cookies in the group are accepted.
 
+### Iterating over Cookie Groups and Cookies
+
+You can iterate over all cookie groups and cookies in your cookie configuration using the `{{ cookie_groups }}` tag.
+This can be useful if you want to display a table containing information about all the cookies used on your website (e.g. on a
+dedicated privacy policy page):
+
+```antlers
+<table>
+
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Lifetime</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{ cookie_groups }}
+      {{ cookies }}
+        <tr>
+          <td>{{ cookie_identifier }}</td>
+          <td>{{ cookie_description }}</td>
+          <td>{{ cookie_lifetime }}</td>
+        </tr>
+      {{ /cookies }}
+    {{ /cookie_groups }}
+  </tbody>
+
+</table>
+```
+
 ## 🧩 JavaScript API
 
 This addon also provides a JavaScript API that allows you to interact with the cookie dialog and the cookie preferences.

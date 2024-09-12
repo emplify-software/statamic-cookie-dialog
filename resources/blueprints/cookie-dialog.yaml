@@ -63,7 +63,7 @@ tabs:
                         display: 'Enabled by default'
                         instructions: 'If the cookie group is enabled by default, the user has to opt-out of it.'
                     -
-                      handle: cookie_fields
+                      handle: cookies
                       field:
                         type: replicator
                         display: Cookies

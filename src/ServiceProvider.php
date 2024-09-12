@@ -17,6 +17,7 @@ class ServiceProvider extends AddonServiceProvider
     protected $tags = [
         Tags\CookieDialog::class,
         Tags\Cookie::class,
+        Tags\CookieGroups::class,
     ];
 
     public function bootAddon(): void
