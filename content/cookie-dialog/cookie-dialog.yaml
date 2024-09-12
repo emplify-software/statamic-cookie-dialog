@@ -6,7 +6,7 @@ groups:
     description: 'We use essential cookies on our website to enable basic functions and to ensure the security of our site.'
     required: true
     enabled_default: false
-    cookie_fields:
+    cookies:
       -
         cookie_identifier: example
         cookie_name: Example

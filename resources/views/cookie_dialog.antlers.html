@@ -87,13 +87,13 @@
                                         {{ trans :key="description" }}
                                     </div>
                                 {{  /if }}
-                                {{ if cookie_fields | length }}
+                                {{ if cookies | length }}
                                 <details class="es-mt-3 es-mb-5 es-text-sm">
                                     <summary class="es-cursor-pointer">
-                                        {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookie_fields | length }}</span>)</span>
+                                        {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
                                     </summary>
                                     <ul class="es-flex es-flex-col es-gap-3 es-mt-4">
-                                        {{ cookie_fields }}
+                                        {{ cookies }}
                                             <li class="es-text-gray-500 dark:es-text-gray-300" data-cookie="{{ cookie_identifier }}">
                                                 <div class="es-flex es-flex-col es-justify-between">
                                                     <div>
@@ -127,7 +127,7 @@
 
                                                 </div>
                                             </li>
-                                        {{ /cookie_fields }}
+                                        {{ /cookies }}
                                     </ul>
                                 </details>
                                 {{ /if }}

@@ -52,16 +52,16 @@ class CookieDialogController extends CpController
 
         // check if no duplicate cookies exist
         $groups = collect($request->get('groups'));
-        $cookies = $groups->pluck('cookie_fields')->flatMap(fn ($fields) => collect($fields)->pluck('cookie_identifier'));
+        $cookies = $groups->pluck('cookies')->flatMap(fn ($fields) => collect($fields)->pluck('cookie_identifier'));
         $cookieDuplicates = $cookies->duplicates();
 
         if ($cookieDuplicates->isNotEmpty()) {
 
-            $duplicateCookiesByGroup = $groups->map(fn ($group) => collect($group['cookie_fields'])
+            $duplicateCookiesByGroup = $groups->map(fn ($group) => collect($group['cookies'])
                 ->pluck('cookie_identifier')
                 ->filter(fn ($cookie) => $cookieDuplicates->contains($cookie)));
 
-            $cookieErrors = $duplicateCookiesByGroup->mapWithKeys(fn ($cookies, $groupKey) => $cookies->mapWithKeys(fn ($cookie, $cookieKey) => ["groups.{$groupKey}.cookie_fields.{$cookieKey}.cookie_identifier" => ['Duplicate cookie identifier']]));
+            $cookieErrors = $duplicateCookiesByGroup->mapWithKeys(fn ($cookies, $groupKey) => $cookies->mapWithKeys(fn ($cookie, $cookieKey) => ["groups.{$groupKey}.cookies.{$cookieKey}.cookie_identifier" => ['Duplicate cookie identifier']]));
 
             return $this->createDuplicateErrorResponse(
                 'Duplicate cookie identifiers are not allowed',
