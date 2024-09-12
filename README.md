@@ -43,7 +43,16 @@ php artisan vendor:publish --tag=statamic-cookie-dialog
 
 ## ⭐️ Pro Version
 
-You can buy the pro version of this addon on the [Statamic Marketplace](https://statamic.com/addons/emplify-software/cookie-dialog).
+You can purchase the pro version of this addon on the [Statamic Marketplace](https://statamic.com/addons/emplify-software/cookie-dialog).
+
+After purchasing the pro version, you can enable it by setting the edition of the addon to `'pro'` in the `config/statamic/editions.php` file of your project:
+
+```php
+    'addons' => [
+        'emplify-software/statamic-cookie-dialog' => 'pro'
+    ],
+```
+
 When the pro version is enabled, the [attribution link to emplify software GmbH](#-license) will be hidden.
 
 ## 💡 How to Use
