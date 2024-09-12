@@ -138,16 +138,22 @@
 
             </section>
 
-            <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
-                <div class="es-relative es-flex es-gap-2">
-                    <button autofocus id="accept-all-btn" class="!es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+            <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8 {{ if !$isProEdition }}es-pb-0 md:es-pb-0{{ /if }}">
+                <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
+                    <button autofocus id="accept-all-btn" class="es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
                         {{ trans :key="data:accept_all" }}
                     </button>
-                    <button id="save-preferences-btn" class="hover:es-bg-gray-100 hover:dark:es-bg-gray-700 es-text-gray-700 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                    <button id="save-preferences-btn" class="es-text-nowrap es-flex-1 es-bg-gray-200 dark:es-bg-gray-600 es-text-gray-700 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
                         {{ trans :key="data:save_preferences" }}
                     </button>
                 </div>
             </section>
+
+            {{ if !$isProEdition }}
+                <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-py-6">
+                    Powered by <a class="es-text-gray-500 dark:es-text-gray-400 es-underline es-underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
+                </section>
+            {{ /if }}
         </div>
     </div>
 
