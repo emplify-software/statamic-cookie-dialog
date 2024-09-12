@@ -1,0 +1,10 @@
+<template 
+{{ if cookies }}
+    data-requires-cookie="{{ cookies }}"
+{{ /if }}
+{{ if groups }}
+    data-requires-cookie-group="{{ groups }}"
+{{ /if }}
+>
+    {{ content }}
+</template>

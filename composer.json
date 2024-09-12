@@ -1,0 +1,32 @@
+{
+    "name": "emplify-software/statamic-cookie-dialog",
+    "autoload": {
+        "psr-4": {
+            "EmplifySoftware\\StatamicCookieDialog\\": "src"
+        }
+    },
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": ">=10",
+        "laravel/tinker": "^2.9",
+        "statamic/cms": ">=4.0"
+    },
+    "extra": {
+        "statamic": {
+            "name": "Cookie Dialog",
+            "description": "A comprehensive cookie dialog for your Statamic application to manage cookie groups and their respective cookies with ease.",
+            "editions": ["free", "pro"]
+        },
+        "laravel": {
+            "providers": [
+                "EmplifySoftware\\StatamicCookieDialog\\ServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pixelfear/composer-dist-plugin": true
+        }
+    },
+    "license": "proprietary"
+}

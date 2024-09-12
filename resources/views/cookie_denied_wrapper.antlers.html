@@ -1,0 +1,10 @@
+<div style="display:contents"
+{{ if cookies }}
+    data-denied-cookie="{{ cookies }}"
+{{ /if }}
+{{ if groups }}
+    data-denied-cookie-group="{{ groups }}"
+{{ /if }}
+>
+    {{ content }}
+</div>

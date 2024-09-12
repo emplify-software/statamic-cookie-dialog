@@ -1,0 +1,11 @@
+@import "tailwindcss/utilities";
+
+/* Prevent body from scrolling while cookie dialog is displayed */
+body:has(dialog#cookie-dialog[open]) {
+    overflow: hidden;
+}
+
+/* Make sure there's no outline around the cookie dialog */
+dialog#cookie-dialog:focus {
+    outline: none;
+}

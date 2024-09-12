@@ -1,0 +1,188 @@
+title: Cookies
+tabs:
+  cookies:
+    display: Cookies
+    sections:
+      -
+        fields:
+          -
+            handle: enabled
+            field:
+              type: toggle
+              display: 'Enable Cookie Dialog'
+              instructions: 'Enable or disable the cookie dialog (embedded with the cookie_dialog tag).'
+          -
+            handle: version
+            field:
+              type: text
+              display: 'Version'
+              instructions: 'Custom version number for the current cookie settings. Update the version number to force users to re-accept the cookie settings.'
+          -
+            handle: groups
+            field:
+              type: replicator
+              display: 'Cookie Groups'
+              instructions: 'Define the cookie groups that are used in the cookie dialog.'
+              sets:
+                cookie-group:
+                  display: 'Cookie Group'
+                  handle: cookies
+                  fields:
+                    -
+                      handle: identifier
+                      field:
+                        type: text
+                        display: Identifier
+                        instructions: 'The identifier of the cookie group.'
+                        required: true
+                        localizable: false
+                    -
+                      handle: name
+                      field:
+                        type: text
+                        display: Name
+                        instructions: 'The human-readable name of the cookie group.'
+                        required: false
+                    -
+                      handle: description
+                      field:
+                        type: textarea
+                        display: Description
+                        instructions: 'A description of the cookie group.'
+                        required: false
+                    -
+                      handle: required
+                      field:
+                        type: toggle
+                        display: Required
+                        instructions: 'If the cookie group is required, the user cannot opt-out of it.'
+                    -
+                      handle: enabled_default
+                      field:
+                        type: toggle
+                        display: 'Enabled by default'
+                        instructions: 'If the cookie group is enabled by default, the user has to opt-out of it.'
+                    -
+                      handle: cookie_fields
+                      field:
+                        type: replicator
+                        display: Cookies
+                        instructions: 'Define the cookies that are part of this group.'
+                        sets:
+                          cookies:
+                            display: Cookies
+                            sets:
+                              cookie:
+                                display: Cookies
+                                fields:
+                                  -
+                                    handle: cookie_identifier
+                                    field:
+                                      type: text
+                                      display: Identifier
+                                      instructions: 'The identifier of the cookie.'
+                                      required: true
+                                      localizable: false
+                                  -
+                                    handle: cookie_name
+                                    field:
+                                      type: text
+                                      display: Name
+                                      instructions: 'The human-readable name of the cookie.'
+                                      required: false
+                                  -
+                                    handle: cookie_description
+                                    field:
+                                      type: textarea
+                                      display: Description
+                                      instructions: 'A description of the cookie.'
+                                      required: false
+                                  -
+                                    handle: cookie_lifetime
+                                    field:
+                                      type: text
+                                      display: Lifetime
+                                      instructions: 'Define the lifetime of the cookie. This is only used for information purposes and does not affect the cookie itself.'
+                                      required: false
+  content:
+    display: Content
+    sections:
+      -
+        fields:
+          -
+            handle: heading
+            field:
+              type: text
+              display: Title
+              instructions: 'The title of the cookie dialog.'
+          - handle: description
+            field:
+              remove_empty_nodes: false
+              type: textarea
+              display: Description
+              instructions: 'The description of the cookie dialog.'
+          -
+            handle: info_pages
+            field:
+              type: group
+              display: 'Imprint and Privacy Links'
+              instructions: 'Links to the imprint and privacy policy pages that are displayed in the cookie dialog.'
+              fields:
+                -
+                  handle: imprint_link
+                  field:
+                    type: link
+                    display: Imprint
+                    width: 50
+                -
+                  handle: imprint_title
+                  field:
+                    type: text
+                    display: 'Imprint Title'
+                    width: 50
+                -
+                  handle: privacy_policy_link
+                  field:
+                    type: link
+                    display: 'Privacy Policy'
+                    width: 50
+                -
+                  handle: privacy_policy_title
+                  field:
+                    type: text
+                    display: 'Privacy Policy Title'
+                    width: 50
+          -
+            handle: accept_all
+            field:
+              type: text
+              display: 'Accept All Button'
+              instructions: 'The text of the accept all button.'
+              width: 50
+          -
+            handle: save_preferences
+            field:
+              type: text
+              display: 'Save Preferences Button'
+              instructions: 'The text of the save preferences button.'
+              width: 50
+          -
+            handle: cookie_details
+            field:
+              type: text
+              display: 'More Details Button'
+              instructions: 'The text of the more details button.'
+          -
+            handle: highlight_color
+            field:
+              type: color
+              display: 'Highlight Color'
+              instructions: 'The default highlight color for selected checkboxes, buttons and links.'
+              required: false
+          -
+            handle: highlight_color_dark
+            field:
+              type: color
+              display: 'Highlight Color (Dark Mode)'
+              instructions: 'The highlight color for selected checkboxes, buttons and links in dark mode.'
+              required: false
