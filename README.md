@@ -178,7 +178,7 @@ To hide the cookie dialog on specific pages (e.g. on the privacy policy page), y
 ```
 
 By using the `hidden` parameter, you can still show the cookie dialog on the page later using the [JavaScript API](#-javascript-api).
-If you want completely disable the cookie dialog on certain pages, you can wrap the `{{ cookie_dialog }}` tag in a conditional statement:
+If you want to completely disable the cookie dialog on certain pages, you can wrap the `{{ cookie_dialog }}` tag in a conditional statement:
 
 ```antlers
 {{ if current_uri != '/privacy-policy' }}
