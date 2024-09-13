@@ -173,11 +173,16 @@ tabs:
               display: 'More Details Button'
               instructions: 'The text of the more details button.'
           -
-            handle: automatic_dark_mode
+            handle: dark_light_mode
             field:
-              type: toggle
-              display: 'Automatic Dark Mode'
-              instructions: 'Automatically enable dark mode for the cookie dialog if the user has enabled the dark mode of their operating system.'
+              type: select
+              options:
+                light: 'Light Mode'
+                dark: 'Dark Mode'
+                auto: 'Automatic'
+              default: auto
+              display: 'Dark/Light Mode'
+              instructions: 'Display the cookie dialog in dark or light mode, or let it automatically switch based on the user''s system settings.'
               required: false
           -
             handle: highlight_color
