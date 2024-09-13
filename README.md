@@ -218,7 +218,7 @@ dedicated privacy policy page):
 </table>
 ```
 
-### 🌗 Automatic Dark Mode
+### Automatic Dark Mode
 
 The cookie dialog will automatically switch to a dark mode if the user's operating system is set to dark mode.
 You can disable this feature in the control panel under `Tools > Cookie Dialog > Content > Automatic Dark Mode`.
