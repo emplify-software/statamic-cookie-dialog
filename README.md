@@ -53,7 +53,7 @@ After purchasing the pro version, you can enable it by setting the edition of th
     ],
 ```
 
-When the pro version is enabled, the [attribution link to emplify software GmbH](#-license) will be hidden.
+When the pro version is enabled, the [attribution link to emplify software GmbH](#-license) will be removed.
 
 ## 💡 How to Use
 
