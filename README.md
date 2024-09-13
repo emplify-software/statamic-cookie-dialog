@@ -168,6 +168,24 @@ The content inside the `{{ cookie:denied }}` tag will be dynamically removed onc
 > in a group are selected, the group toggle is automatically activated to indicate to the user that they have accepted a
 > cookie from this group, but the group is not considered allowed until all cookies in the group are accepted.
 
+### Hiding the Cookie Dialog on Specific Pages
+
+When you put the `{{ cookie_dialog }}` tag in your `layout.antlers.html` file, the dialog will be shown on all pages by default.
+To hide the cookie dialog on specific pages (e.g. on the privacy policy page), you can set the `hidden` parameter depending on the page's URL or other conditions:
+
+```antlers
+{{ cookie_dialog :hidden="current_uri == '/privacy-policy'" }}
+```
+
+By using the `hidden` parameter, you can still show the cookie dialog on the page later using the [JavaScript API](#-javascript-api).
+If you want completely disable the cookie dialog on certain pages, you can wrap the `{{ cookie_dialog }}` tag in a conditional statement:
+
+```antlers
+{{ if current_uri != '/privacy-policy' }}
+    {{ cookie_dialog }}
+{{ /if }}
+```
+
 ### Iterating over Cookie Groups and Cookies
 
 You can iterate over all cookie groups and cookies in your cookie configuration using the `{{ cookie_groups }}` tag.

@@ -23,7 +23,9 @@ class CookieDialog extends Tags
         $settings = CookieDialogHelper::getContents();
 
         $cookieConsentData = CookieDialogHelper::getCookieConsentData();
-        $dialogEnabled = ! $cookieConsentData || ! CookieDialogHelper::cookieVersionIsUpToDate();
+        $dialogEnabled =
+            !$this->params["hidden"] && // force hide the dialog
+            (! $cookieConsentData || ! CookieDialogHelper::cookieVersionIsUpToDate()); // enable if cookie consent is not set or is outdated
 
         $addon = Addon::get('emplify-software/statamic-cookie-dialog');
         $isProEdition = $addon->edition() === 'pro';
