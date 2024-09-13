@@ -176,8 +176,8 @@ tabs:
             handle: automatic_dark_mode
             field:
               type: toggle
-              display: 'Automatischer Dark-Mode'
-              instructions: 'Dark-Mode automatisch aktivieren, wenn der Benutzer den Dark-Mode seines Betriebssystems aktiviert hat.'
+              display: 'Automatic Dark Mode'
+              instructions: 'Automatically enable dark mode for the cookie dialog if the user has enabled the dark mode of their operating system.'
               required: false
           -
             handle: highlight_color

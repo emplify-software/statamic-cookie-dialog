@@ -218,6 +218,17 @@ dedicated privacy policy page):
 </table>
 ```
 
+### 🌗 Automatic Dark Mode
+
+The cookie dialog will automatically switch to a dark mode if the user's operating system is set to dark mode.
+You can disable this feature in the control panel under `Tools > Cookie Dialog > Content > Automatic Dark Mode`.
+
+To manually enable dark mode for the cookie dialog, just add the `es-dark` class to the html tag of your website:
+```js
+document.documentElement.classList.add('es-dark');
+```
+
+
 ## 🧩 JavaScript API
 
 This addon also provides a JavaScript API that allows you to interact with the cookie dialog and the cookie preferences.
