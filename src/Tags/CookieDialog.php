@@ -4,6 +4,7 @@ namespace EmplifySoftware\StatamicCookieDialog\Tags;
 
 use EmplifySoftware\StatamicCookieDialog\Helpers\CookieDialog as CookieDialogHelper;
 use Exception;
+use Illuminate\Support\Arr;
 use Statamic\Facades\Addon;
 use Statamic\Tags\Tags;
 
@@ -24,7 +25,7 @@ class CookieDialog extends Tags
 
         $cookieConsentData = CookieDialogHelper::getCookieConsentData();
         $dialogEnabled =
-            !$this->params["hidden"] && // force hide the dialog
+            !Arr::get($this->params, "hidden", false) && // force hide the dialog
             (! $cookieConsentData || ! CookieDialogHelper::cookieVersionIsUpToDate()); // enable if cookie consent is not set or is outdated
 
         $addon = Addon::get('emplify-software/statamic-cookie-dialog');
