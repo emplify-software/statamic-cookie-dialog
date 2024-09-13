@@ -28,4 +28,5 @@ info_pages:
   imprint_title: Imprint
 cookie_details: Cookies
 save_preferences: 'Save Settings'
+automatic_dark_mode: true
 highlight_color: '#256eff'

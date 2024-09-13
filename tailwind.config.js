@@ -8,5 +8,6 @@ export default {
         './resources/**/*.blade.php',
         './resources/**/*.vue',
         './content/**/*.md',
-    ]
+    ],
+    darkMode: 'selector'
 };

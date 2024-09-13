@@ -1,6 +1,24 @@
 <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
 <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
 
+{{ if data:automatic_dark_mode }}
+    <script type="module">
+        /**
+         * switch between dark/light mode based on the system preference
+         */
+        function updateMode() {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('es-dark')
+            } else {
+                document.documentElement.classList.remove('es-dark')
+            }
+        }
+
+        updateMode()
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateMode)
+    </script>
+{{ /if }}
+
 {{ if data:highlight_color }}
     <style>
         /* Toggle switch background color and accept all button background color */

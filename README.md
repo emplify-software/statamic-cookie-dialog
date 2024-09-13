@@ -334,8 +334,8 @@ you a short overview, here are the main points:
 - Remove or obscure the required attribution link to emplify software GmbH without explicit permission
 - Redistribute the Software in any form, whether modified or unmodified, to any third party
 
-The attribution link to emplify software GmbH on the bottom of the cookie dialog
-will automatically be hidden when you buy the [pro version](https://statamic.com/addons/emplify-software/cookie-dialog) of this addon.
+The attribution link to emplify software GmbH in the cookie dialog will automatically be 
+removed when you purchase the [pro version](https://statamic.com/addons/emplify-software/cookie-dialog) of this addon.
 
 ## 🛟 Support
 

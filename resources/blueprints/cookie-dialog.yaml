@@ -173,6 +173,13 @@ tabs:
               display: 'More Details Button'
               instructions: 'The text of the more details button.'
           -
+            handle: automatic_dark_mode
+            field:
+              type: toggle
+              display: 'Automatischer Dark-Mode'
+              instructions: 'Dark-Mode automatisch aktivieren, wenn der Benutzer den Dark-Mode seines Betriebssystems aktiviert hat.'
+              required: false
+          -
             handle: highlight_color
             field:
               type: color
