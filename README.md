@@ -91,13 +91,14 @@ Cookie groups have a unique identifier, name and description and can be marked a
 default.
 Each cookie group can contain multiple cookies with a name, description and lifetime.
 
-In the **"Content"** tab, you can customize the content of the cookie dialog, including the title, description, buttons
-and the highlight color for the toggle switches.
+In the **"Customization"** tab, you can customize the style and content of the cookie dialog, including the title, description, buttons
+and.
 
 ### Cookie Dialog Button
 
 By adding the `{{ cookie_dialog_button }}` tag to your `layout.antlers.html` file, 
 you can display a floating button that opens the cookie dialog when clicked.
+This allows users to change their cookie preferences at any time after the initial dialog has been closed.
 
 ```antlers
 {{ cookie_dialog_button }}
