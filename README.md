@@ -94,7 +94,7 @@ Each cookie group can contain multiple cookies with a name, description and life
 In the **"Customization"** tab, you can customize the style and content of the cookie dialog, including the title, description, buttons
 and links to your imprint and privacy policy.
 
-### Cookie Dialog Button
+### Floating Button
 
 By adding the `{{ cookie_dialog_button }}` tag to your `layout.antlers.html` file, 
 you can display a floating button that opens the cookie dialog when clicked.
