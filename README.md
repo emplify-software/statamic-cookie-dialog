@@ -92,7 +92,7 @@ default.
 Each cookie group can contain multiple cookies with a name, description and lifetime.
 
 In the **"Customization"** tab, you can customize the style and content of the cookie dialog, including the title, description, buttons
-and.
+and links to your imprint and privacy policy.
 
 ### Cookie Dialog Button
 
