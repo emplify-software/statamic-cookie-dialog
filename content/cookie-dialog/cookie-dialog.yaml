@@ -30,3 +30,6 @@ cookie_details: Cookies
 save_preferences: 'Save Settings'
 dark_light_mode: auto
 highlight_color: '#256eff'
+highlight_color_dark: '#599dff'
+button_position: bottom_right
+button_text: Cookies

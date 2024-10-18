@@ -1,0 +1,22 @@
+{{ if data:dark_light_mode == 'auto' || !data:dark_light_mode }}
+    <!-- automatic dark/light mode -->
+    <script type="module">
+        /**
+         * switch between dark/light mode based on the system preference
+         */
+        function updateMode() {
+            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.classList.add('es-dark')
+            } else {
+                document.documentElement.classList.remove('es-dark')
+            }
+        }
+
+        updateMode()
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateMode)
+    </script>
+{{ elseif data:dark_light_mode == 'dark' }}
+    <script type="module">
+        document.documentElement.classList.add('es-dark')
+    </script>
+{{ /if }}
