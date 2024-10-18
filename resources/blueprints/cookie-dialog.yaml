@@ -10,13 +10,23 @@ tabs:
             field:
               type: toggle
               display: 'Enable Cookie Dialog'
-              instructions: 'Enable or disable the cookie dialog (embedded with the cookie_dialog tag).'
+              instructions: 'Enable the cookie dialog (embedded with the `cookie_dialog` tag).'
+          -
+            handle: button_enabled
+            field:
+              type: toggle
+              display: 'Show Cookie Dialog Button'
+              instructions: 'Show the button that opens the cookie dialog (embedded with the `cookie_dialog_button` tag).'
+      -
+        fields:
           -
             handle: version
             field:
               type: text
               display: 'Version'
               instructions: 'Custom version number for the current cookie settings. Update the version number to force users to re-accept the cookie settings.'
+      -
+        fields:
           -
             handle: groups
             field:
@@ -105,9 +115,11 @@ tabs:
                                       instructions: 'Define the lifetime of the cookie. This is only used for information purposes and does not affect the cookie itself.'
                                       required: false
   content:
-    display: Content
+    display: Customization
     sections:
       -
+        display: 'Cookie Dialog Content'
+        instructions: 'Set custom texts and links for the cookie dialog.'
         fields:
           -
             handle: heading
@@ -172,6 +184,32 @@ tabs:
               type: text
               display: 'More Details Button'
               instructions: 'The text of the more details button.'
+      -
+        display: 'Cookie Dialog Button'
+        instructions: 'Customize the appearance of the cookie dialog button.'
+        fields:
+          -
+            handle: button_position
+            field:
+              type: select
+              options:
+                bottom_right: 'Bottom Right (Fixed Position)'
+                bottom_left: 'Bottom Left (Fixed Position)'
+                inline: 'Inline'
+              default: bottom_right
+              display: 'Button Position'
+              instructions: 'The position of the cookie dialog button. The button can be displayed on a fixed position on the page or inline anywhere in the content.'
+              required: false
+          -
+            handle: button_text
+            field:
+              type: text
+              display: 'Button Text'
+              instructions: 'An optional text for the cookie dialog button displayed next to the icon.'
+      -
+        display: Theme
+        instructions: 'The theme is applied to the cookie dialog and the cookie dialog button.'
+        fields:
           -
             handle: dark_light_mode
             field:

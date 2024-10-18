@@ -1,31 +1,10 @@
 <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
 <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
+{{ partial src="cookie-dialog::utils/_dark_light_mode" }}
 
-{{ if data:dark_light_mode == 'auto' || !data:dark_light_mode }}
-    <!-- automatic dark/light mode -->
-    <script type="module">
-        /**
-         * switch between dark/light mode based on the system preference
-         */
-        function updateMode() {
-            if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                document.documentElement.classList.add('es-dark')
-            } else {
-                document.documentElement.classList.remove('es-dark')
-            }
-        }
+{{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}
 
-        updateMode()
-        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateMode)
-    </script>
-{{ elseif data:dark_light_mode == 'dark' }}
-    <script type="module">
-        document.documentElement.classList.add('es-dark')
-    </script>
-{{ /if }}
-
-
-{{ if data:highlight_color }}
+{{ if data:highlight_color && (is_automatic_mode || data:dark_light_mode == 'light') }}
     <style>
         /* Toggle switch background color and accept all button background color */
         label[data-toggle-switch]:has(:checked) > .checkbox, #accept-all-btn {
@@ -43,9 +22,9 @@
     </style>
 {{ /if }}
 
-{{ if data:highlight_color_dark }}
+{{ if data:highlight_color_dark && (is_automatic_mode || data:dark_light_mode == 'dark') }}
     <style>
-        @media (prefers-color-scheme: dark) {
+            {{ if is_automatic_mode}} @media (prefers-color-scheme: dark) { {{ /if }}
             /* Toggle switch background color and accept all button background color */
             label[data-toggle-switch]:has(:checked) > .checkbox, #accept-all-btn {
                 background-color: {{data:highlight_color_dark}}!important;
@@ -58,7 +37,7 @@
             [data-cookie] input[type="checkbox"] {
                 accent-color: {{data:highlight_color_dark}};
             }
-        }
+            {{ if is_automatic_mode}} } {{ /if }}
     </style>
 {{ /if }}
 

@@ -314,7 +314,7 @@ const CookieDialog = {
 
     /**
      * Show the cookie consent dialog.
-     * @param {boolean} reloadPage - Force reload the page after changing the cookie preferences. Per default, the page will be reloaded when necessary to apply the cookie preference changes to content wrapped in {{ cookie:allowed }} or {{ cookie:denied }} tags.
+     * @param {boolean?} reloadPage - Force reload the page after changing the cookie preferences. Per default, the page will be reloaded when necessary to apply the cookie preference changes to content wrapped in {{ cookie:allowed }} or {{ cookie:denied }} tags.
      */
     showDialog: (reloadPage) => {
         allowDialogClose = true;
