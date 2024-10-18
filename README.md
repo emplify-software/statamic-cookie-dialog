@@ -105,7 +105,7 @@ This allows users to change their cookie preferences at any time after the initi
 ```
 
 Per default, the button is displayed in the bottom right corner of the screen.
-You can change the position of the button in the control panel under `Tools > Cookie Dialog > Customization > Cookie Dialog Button`.
+You can change the position of the button and the button text in the control panel under `Tools > Cookie Dialog > Customization > Cookie Dialog Button`.
 
 
 ### Enabling Content based on Cookie Preferences
