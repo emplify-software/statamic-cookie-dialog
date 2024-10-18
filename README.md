@@ -18,9 +18,11 @@ user's cookie preferences.
 ✅ Customizable cookie groups and cookies<br>
 ✅ Tag to render content dynamically based on cookie preferences<br>
 ✅ Tag to render fallback content if a given cookie is declined<br>
+✅ Floating button to open the cookie dialog manually<br>
 ✅ Cookie versioning<br>
 ✅ JavaScript API<br>
-✅ Multi-Site Support<br>
+✅ Dark/light mode support<br>
+✅ Multi-Site support<br>
 
 > [!NOTE]
 > This addon does not guarantee GDPR compliance. Please consult with a legal expert to ensure that your website is
@@ -57,6 +59,8 @@ When the pro version is enabled, the [attribution link to emplify software GmbH]
 
 ## 💡 How to Use
 
+### Cookie Dialog
+
 To enable the cookie dialog for all pages, put the following tag anywhere in your `layout.antlers.html` file:
 
 ```antlers
@@ -89,6 +93,19 @@ Each cookie group can contain multiple cookies with a name, description and life
 
 In the **"Content"** tab, you can customize the content of the cookie dialog, including the title, description, buttons
 and the highlight color for the toggle switches.
+
+### Cookie Dialog Button
+
+By adding the `{{ cookie_dialog_button }}` tag to your `layout.antlers.html` file, 
+you can display a floating button that opens the cookie dialog when clicked.
+
+```antlers
+{{ cookie_dialog_button }}
+```
+
+Per default, the button is displayed in the bottom right corner of the screen.
+You can change the position of the button in the control panel under `Tools > Cookie Dialog > Customization > Cookie Dialog Button`.
+
 
 ### Enabling Content based on Cookie Preferences
 
@@ -223,7 +240,7 @@ dedicated privacy policy page):
 Per default, the cookie dialog will automatically be displayed in dark or light mode based on the user's operating
 system settings.
 If you don't want to use the automatic mode, you can select a specific color mode in the control panel 
-under `Tools > Cookie Dialog > Content > Dark/Light Mode`.
+under `Tools > Cookie Dialog > Customization > Theme`.
 
 To toggle between dark and light mode dynamically, you can also add or remove the `es-dark` class in the `<html>`
 tag of your website with JavaScript:
