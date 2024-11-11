@@ -1,4 +1,5 @@
 enabled: true
+button_enabled: true
 groups:
   -
     identifier: essential
