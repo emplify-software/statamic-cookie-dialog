@@ -41,7 +41,7 @@
     </style>
 {{ /if }}
 
-<dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog" class="es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black">
+<dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black">
 
     <div class="m-0 md:es-m-2 es-bg-white es-mx-2 es-max-h-[93dvh] dark:es-bg-gray-800 es-text-black es-backdrop-blur-md es-rounded-3xl es-relative es-overflow-y-auto dark:es-text-white">
         <div id="cookie-section-container" class="es-transition-all">
@@ -143,10 +143,10 @@
 
             <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
                 <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
-                    <button autofocus id="accept-all-btn" class="es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                    <button autofocus id="accept-all-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
                         {{ trans :key="data:accept_all" }}
                     </button>
-                    <button id="save-preferences-btn" class="es-text-nowrap es-flex-1 es-bg-gray-100 dark:es-bg-gray-600 es-text-gray-600 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                    <button id="save-preferences-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 es-bg-gray-100 dark:es-bg-gray-600 es-text-gray-600 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
                         {{ trans :key="data:save_preferences" }}
                     </button>
                 </div>

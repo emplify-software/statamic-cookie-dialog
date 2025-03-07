@@ -9,3 +9,10 @@ body:has(dialog#cookie-dialog[open]) {
 dialog#cookie-dialog:focus {
     outline: none;
 }
+
+/** required for compatibility with tailwind 4, where these variables are no longer defined or have different default values */
+.checkbox:after {
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-rotate: 0;
+}
