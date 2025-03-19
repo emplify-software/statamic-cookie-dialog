@@ -351,6 +351,34 @@ English or `de` for German).
 In the translation file, you can define the mapping of the default English texts to your desired language
 (see https://laravel.com/docs/11.x/localization#using-translation-strings-as-keys for further information).
 
+## Customizing CSS
+
+The cookie dialog is embedded inside a shadow DOM to prevent CSS conflicts with your website's styles.
+This means that any CSS you write in your own stylesheets will not affect the cookie dialog.
+
+However, you can still customize some parts of the cookie dialog by using the `::part()` pseudo-element selector.
+
+With the part selector, you can select the following parts inside the cookie dialog:
+ * `::part(text)` to apply styles to all text inside the dialog
+ * `::part(dialog)` to apply styles on the outer dialog element
+ * `::part(button)` to apply styles to the buttons inside the dialog
+
+Example:
+```css
+/* Change the border radius of the dialog */
+#cookie-dialog-container::part(dialog) {
+    border-radius: 20px;
+}
+
+/* Change the text color of the dialog */
+#cookie-dialog-container::part(text) {
+    color: #333;
+}
+```
+
+> [!NOTE]
+> If you using Tailwind 4+ in your project, the default sans font will be automatically applied to the cookie dialog.
+
 ## 📄 License
 
 You may use this addon free of charge under the terms and conditions of the [License Agreement](./LICENSE.md). To give
