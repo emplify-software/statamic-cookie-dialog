@@ -1,164 +1,169 @@
-<script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
-<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
-{{ partial src="cookie-dialog::utils/_dark_light_mode" }}
+<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/parent.css">
 
-{{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}
+<div id="cookie-dialog-container"><template shadowrootmode="open">
 
-{{ if data:highlight_color && (is_automatic_mode || data:dark_light_mode == 'light') }}
-    <style>
-        /* Toggle switch background color and accept all button background color */
-        label[data-toggle-switch]:has(:checked) > .checkbox, #accept-all-btn {
-            background-color: {{data:highlight_color}}!important;
-            color: white!important;
-        }
+    <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
+    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
+    {{ partial src="cookie-dialog::utils/_dark_light_mode" }}
 
-        [data-info-link] {
-            color: {{data:highlight_color}}!important;
-        }
+    {{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}
 
-        [data-cookie] input[type="checkbox"] {
-            accent-color: {{data:highlight_color}};
-        }
-    </style>
-{{ /if }}
-
-{{ if data:highlight_color_dark && (is_automatic_mode || data:dark_light_mode == 'dark') }}
-    <style>
-            {{ if is_automatic_mode}} @media (prefers-color-scheme: dark) { {{ /if }}
+    {{ if data:highlight_color && (is_automatic_mode || data:dark_light_mode == 'light') }}
+        <style>
             /* Toggle switch background color and accept all button background color */
             label[data-toggle-switch]:has(:checked) > .checkbox, #accept-all-btn {
-                background-color: {{data:highlight_color_dark}}!important;
+                background-color: {{data:highlight_color}}!important;
+                color: white!important;
             }
 
             [data-info-link] {
-                color: {{data:highlight_color_dark}}!important;
+                color: {{data:highlight_color}}!important;
             }
 
             [data-cookie] input[type="checkbox"] {
-                accent-color: {{data:highlight_color_dark}};
+                accent-color: {{data:highlight_color}};
             }
-            {{ if is_automatic_mode}} } {{ /if }}
-    </style>
-{{ /if }}
+        </style>
+    {{ /if }}
 
-<dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black">
+    {{ if data:highlight_color_dark && (is_automatic_mode || data:dark_light_mode == 'dark') }}
+        <style>
+                {{ if is_automatic_mode}} @media (prefers-color-scheme: dark) { {{ /if }}
+                /* Toggle switch background color and accept all button background color */
+                label[data-toggle-switch]:has(:checked) > .checkbox, #accept-all-btn {
+                    background-color: {{data:highlight_color_dark}}!important;
+                }
 
-    <div class="m-0 md:es-m-2 es-bg-white es-mx-2 es-max-h-[93dvh] dark:es-bg-gray-800 es-text-black es-backdrop-blur-md es-rounded-3xl es-relative es-overflow-y-auto dark:es-text-white">
-        <div id="cookie-section-container" class="es-transition-all">
-            <section id="cookie-main-section" class="es-overflow-hidden es-transition-all es-duration-150 es-max-h-full">
-                <div class="es-p-6 md:es-p-8">
-                    <h3 class="es-text-3xl es-font-extrabold es-mb-5">
-                        {{ trans :key="data:heading" }}
-                    </h3>
+                [data-info-link] {
+                    color: {{data:highlight_color_dark}}!important;
+                }
 
-                    <div class="es-text-gray-500 dark:es-text-gray-300">
-                        {{ trans :key="data:description" }}
-                    </div>
-                    {{ if data:info_pages:imprint_link || data:info_pages:privacy_policy_link }}
-                        <div class="es-text-gray-500 dark:es-text-gray-300 es-mt-4">
-                            {{ if data:info_pages:imprint_link }}
-                                <a href="{{ data:info_pages:imprint_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:imprint_title" }}</a>
-                            {{ /if }}
-                            {{ if data:info_pages:imprint_link && data:info_pages:privacy_policy_link }}
-                                &nbsp;•&nbsp;
-                            {{ /if }}
-                            {{ if data:info_pages:privacy_policy_link }}
-                                <a href="{{ data:info_pages:privacy_policy_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:privacy_policy_title" }}</a>
-                            {{ /if }}
+                [data-cookie] input[type="checkbox"] {
+                    accent-color: {{data:highlight_color_dark}};
+                }
+                {{ if is_automatic_mode}} } {{ /if }}
+        </style>
+    {{ /if }}
+
+    <dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black">
+
+        <div part="dialog" class="m-0 md:es-m-2 es-bg-white es-mx-2 es-max-h-[93dvh] dark:es-bg-gray-800 es-text-black es-backdrop-blur-md es-rounded-3xl es-relative es-overflow-y-auto dark:es-text-white">
+            <div id="cookie-section-container" class="es-transition-all">
+                <section id="cookie-main-section" class="es-overflow-hidden es-transition-all es-duration-150 es-max-h-full">
+                    <div class="es-p-6 md:es-p-8">
+                        <h3 part="text" class="es-text-3xl es-font-extrabold es-mb-5">
+                            {{ trans :key="data:heading" }}
+                        </h3>
+
+                        <div part="text" class="es-text-gray-500 dark:es-text-gray-300">
+                            {{ trans :key="data:description" }}
                         </div>
-                    {{ /if }}
-                </div>
-            </section>
+                        {{ if data:info_pages:imprint_link || data:info_pages:privacy_policy_link }}
+                            <div class="es-text-gray-500 dark:es-text-gray-300 es-mt-4">
+                                {{ if data:info_pages:imprint_link }}
+                                    <a part="text" href="{{ data:info_pages:imprint_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:imprint_title" }}</a>
+                                {{ /if }}
+                                {{ if data:info_pages:imprint_link && data:info_pages:privacy_policy_link }}
+                                    &nbsp;•&nbsp;
+                                {{ /if }}
+                                {{ if data:info_pages:privacy_policy_link }}
+                                    <a part="text" href="{{ data:info_pages:privacy_policy_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:privacy_policy_title" }}</a>
+                                {{ /if }}
+                            </div>
+                        {{ /if }}
+                    </div>
+                </section>
 
-            <section class="es-flex es-flex-col es-px-6 md:es-px-8">
+                <section class="es-flex es-flex-col es-px-6 md:es-px-8">
 
-                <div id="cookie-custom-section" class="es-transition-all es-duration-150 es-flex-1">
-                    <ul>
-                        {{ data:groups }}
-                            <li class="es-border-gray-200 es-pt-5 es-border-b last-of-type:!es-border-b-0" data-cookie-group="{{ identifier }}"{{required ? " data-cookie-required" : ""}}>
-                                <div class="es-mb-5">
-                                    <label class="es-w-full es-inline-flex es-items-center es-cursor-pointer es-justify-between" data-toggle-switch>
-                                        <span class="es-font-semibold">
-                                            {{ trans :key="name ?? identifier" }}
-                                        </span>
-                                        <input type="checkbox" class="es-sr-only es-peer" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
-                                        <div class="checkbox es-relative es-w-11 es-h-6 es-bg-gray-200 es-rounded-full es-peer peer-checked:after:es-translate-x-full peer-checked:after:es-border-white after:es-content-[''] after:es-absolute after:es-top-0.5 after:es-start-[2px] after:es-bg-white after:es-border-gray-300 after:es-border after:es-rounded-full after:es-h-5 after:es-w-5 after:es-transition-all dark:es-border-gray-600 peer-checked:!es-bg-gray-700 peer-disabled:es-cursor-not-allowed peer-disabled:es-opacity-50"></div>
-                                    </label>
-                                </div>
-                                {{  if description }}
-                                    <div data-description class="description es-break-words es-text-gray-500 dark:es-text-gray-200 es-mb-5">
-                                        {{ trans :key="description" }}
+                    <div id="cookie-custom-section" class="es-transition-all es-duration-150 es-flex-1">
+                        <ul>
+                            {{ data:groups }}
+                                <li class="es-border-gray-200 es-pt-5 es-border-b last-of-type:!es-border-b-0" data-cookie-group="{{ identifier }}"{{required ? " data-cookie-required" : ""}}>
+                                    <div class="es-mb-5">
+                                        <label class="es-w-full es-inline-flex es-items-center es-cursor-pointer es-justify-between" data-toggle-switch>
+                                            <span part="text" class="es-font-semibold">
+                                                {{ trans :key="name ?? identifier" }}
+                                            </span>
+                                            <input type="checkbox" class="es-sr-only es-peer" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
+                                            <div class="checkbox es-relative es-w-11 es-h-6 es-bg-gray-200 es-rounded-full es-peer peer-checked:after:es-translate-x-full peer-checked:after:es-border-white after:es-content-[''] after:es-absolute after:es-top-0.5 after:es-start-[2px] after:es-bg-white after:es-border-gray-300 after:es-border after:es-rounded-full after:es-h-5 after:es-w-5 after:es-transition-all dark:es-border-gray-600 peer-checked:!es-bg-gray-700 peer-disabled:es-cursor-not-allowed peer-disabled:es-opacity-50"></div>
+                                        </label>
                                     </div>
-                                {{  /if }}
-                                {{ if cookies | length }}
-                                <details class="es-mt-3 es-mb-5 es-text-sm">
-                                    <summary class="es-cursor-pointer">
-                                        {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
-                                    </summary>
-                                    <ul class="es-flex es-flex-col es-gap-3 es-mt-4">
-                                        {{ cookies }}
-                                            <li class="es-text-gray-500 dark:es-text-gray-300" data-cookie="{{ cookie_identifier }}">
-                                                <div class="es-flex es-flex-col es-justify-between">
-                                                    <div>
-                                                        <div class="es-flex es-gap-4 es-items-baseline es-pl-4">
-                                                            <div>
-                                                                <input id="checkbox-{{ cookie_identifier }}" type="checkbox" class="es-w-32 es-translate-y-[2px] es-w-4 es-h-4 es-text-blue-600 es-bg-gray-100 es-border-gray-300 dark:es-ring-offset-gray-800 focus:es-ring-2 dark:es-bg-gray-700 dark:es-border-gray-600" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
-                                                            </div>
-                                                            <div>
-                                                                <label for="checkbox-{{ cookie_identifier }}">
-                                                                    <span class="es-font-semibold es-break-words es-mr-4">
-                                                                        {{ trans :key="cookie_name ?? cookie_identifier" }}
-                                                                    </span>
-                                                                    <span>
-                                                                        {{ if cookie_lifetime }}
-                                                                            {{ trans :key="cookie_lifetime" }}
+                                    {{  if description }}
+                                        <div part="text" data-description class="description es-break-words es-text-gray-500 dark:es-text-gray-200 es-mb-5">
+                                            {{ trans :key="description" }}
+                                        </div>
+                                    {{  /if }}
+                                    {{ if cookies | length }}
+                                    <details class="es-mt-3 es-mb-5 es-text-sm">
+                                        <summary class="es-cursor-pointer">
+                                            {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
+                                        </summary>
+                                        <ul class="es-flex es-flex-col es-gap-3 es-mt-4">
+                                            {{ cookies }}
+                                                <li class="es-text-gray-500 dark:es-text-gray-300" data-cookie="{{ cookie_identifier }}">
+                                                    <div class="es-flex es-flex-col es-justify-between">
+                                                        <div>
+                                                            <div class="es-flex es-gap-4 es-items-baseline es-pl-4">
+                                                                <div>
+                                                                    <input id="checkbox-{{ cookie_identifier }}" type="checkbox" class="es-w-32 es-translate-y-[2px] es-w-4 es-h-4 es-text-blue-600 es-bg-gray-100 es-border-gray-300 dark:es-ring-offset-gray-800 focus:es-ring-2 dark:es-bg-gray-700 dark:es-border-gray-600" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
+                                                                </div>
+                                                                <div>
+                                                                    <label for="checkbox-{{ cookie_identifier }}">
+                                                                        <span part="text" class="es-font-semibold es-break-words es-mr-4">
+                                                                            {{ trans :key="cookie_name ?? cookie_identifier" }}
+                                                                        </span>
+                                                                        <span part="text">
+                                                                            {{ if cookie_lifetime }}
+                                                                                {{ trans :key="cookie_lifetime" }}
+                                                                            {{ /if }}
+                                                                        </span>
+                                                                    </label>
+
+                                                                    <p part="text" class="es-break-words">
+                                                                        {{ if cookie_description }}
+                                                                            {{ trans :key="cookie_description" }}
                                                                         {{ /if }}
-                                                                    </span>
-                                                                </label>
+                                                                    </p>
 
-                                                                <p class="es-break-words">
-                                                                    {{ if cookie_description }}
-                                                                        {{ trans :key="cookie_description" }}
-                                                                    {{ /if }}
-                                                                </p>
-
+                                                                </div>
                                                             </div>
+
+
                                                         </div>
 
-
                                                     </div>
+                                                </li>
+                                            {{ /cookies }}
+                                        </ul>
+                                    </details>
+                                    {{ /if }}
+                                </li>
+                            {{ /data:groups }}
+                        </ul>
+                    </div>
 
-                                                </div>
-                                            </li>
-                                        {{ /cookies }}
-                                    </ul>
-                                </details>
-                                {{ /if }}
-                            </li>
-                        {{ /data:groups }}
-                    </ul>
-                </div>
-
-            </section>
-
-            <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
-                <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
-                    <button autofocus id="accept-all-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
-                        {{ trans :key="data:accept_all" }}
-                    </button>
-                    <button id="save-preferences-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 es-bg-gray-100 dark:es-bg-gray-600 es-text-gray-600 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
-                        {{ trans :key="data:save_preferences" }}
-                    </button>
-                </div>
-            </section>
-
-            {{ if !$isProEdition }}
-                <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-pb-6 es-text-sm">
-                    Powered by <a class="es-text-gray-500 dark:es-text-gray-400 es-underline es-underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
                 </section>
-            {{ /if }}
+
+                <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
+                    <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
+                        <button part="button text" autofocus id="accept-all-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                            {{ trans :key="data:accept_all" }}
+                        </button>
+                        <button part="button text" id="save-preferences-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 es-bg-gray-100 dark:es-bg-gray-600 es-text-gray-600 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                            {{ trans :key="data:save_preferences" }}
+                        </button>
+                    </div>
+                </section>
+
+                {{ if !$isProEdition }}
+                    <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-pb-6 es-text-sm">
+                        Powered by <a class="es-text-gray-500 dark:es-text-gray-400 es-underline es-underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
+                    </section>
+                {{ /if }}
+            </div>
         </div>
-    </div>
 
-</dialog>
+    </dialog>
 
+</template></div>
