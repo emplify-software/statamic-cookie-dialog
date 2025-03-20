@@ -1,7 +1,8 @@
 {{ if data:dark_light_mode == 'auto' || !data:dark_light_mode }}
     <!-- automatic dark/light mode -->
     <script type="module">
-        const dialog = document.querySelector("#cookie-dialog-container").shadowRoot.querySelector("dialog");
+        const dialog = document.querySelector("#cookie-dialog").shadowRoot.querySelector("dialog");
+        const dialogButton = document.querySelector("#cookie-dialog-button").shadowRoot.querySelector("button");
 
         /**
          * switch between dark/light mode based on the system preference
@@ -9,8 +10,10 @@
         function updateMode() {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
                 dialog.classList.add('es-dark')
+                dialogButton?.classList.add('es-dark')
             } else {
                 dialog.classList.remove('es-dark')
+                dialogButton?.classList.remove('es-dark')
             }
         }
 
@@ -19,7 +22,10 @@
     </script>
 {{ elseif data:dark_light_mode == 'dark' }}
     <script type="module">
-        const dialog = document.querySelector("#cookie-dialog-container").shadowRoot.querySelector("dialog");
+        const dialog = document.querySelector("#cookie-dialog").shadowRoot.querySelector("dialog");
         dialog.classList.add('es-dark')
+
+        const dialogButton = document.querySelector("#cookie-dialog-button").shadowRoot.querySelector("button");
+        dialogButton?.classList.add('es-dark')
     </script>
 {{ /if }}
