@@ -29,7 +29,7 @@ info_pages:
   imprint_title: Imprint
 cookie_details: Cookies
 save_preferences: 'Save Settings'
-dark_light_mode: auto
+dark_light_mode: light
 highlight_color: '#256eff'
 highlight_color_dark: '#599dff'
 button_position: bottom_right
