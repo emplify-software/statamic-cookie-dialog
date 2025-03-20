@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/parent.css">
 
-<div id="cookie-dialog-container"><template shadowrootmode="open">
+<div id="cookie-dialog"><template shadowrootmode="open">
 
     <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
     <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
@@ -45,7 +45,7 @@
         </style>
     {{ /if }}
 
-    <dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black">
+    <dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog-inner" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black focus:es-outline-0">
 
         <div part="dialog" class="m-0 md:es-m-2 es-bg-white es-mx-2 es-max-h-[93dvh] dark:es-bg-gray-800 es-text-black es-backdrop-blur-md es-rounded-3xl es-relative es-overflow-y-auto dark:es-text-white">
             <div id="cookie-section-container" class="es-transition-all">
@@ -96,7 +96,7 @@
                                     {{  /if }}
                                     {{ if cookies | length }}
                                     <details class="es-mt-3 es-mb-5 es-text-sm">
-                                        <summary class="es-cursor-pointer">
+                                        <summary part="text" class="es-cursor-pointer">
                                             {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
                                         </summary>
                                         <ul class="es-flex es-flex-col es-gap-3 es-mt-4">

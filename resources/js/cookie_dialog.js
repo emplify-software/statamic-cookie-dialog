@@ -1,4 +1,4 @@
-const root = document.querySelector("#cookie-dialog-container").shadowRoot;
+const root = document.querySelector("#cookie-dialog").shadowRoot;
 
 let allowDialogClose = false;
 let reloadPageAfterClose;
@@ -296,7 +296,7 @@ function populateCookiePreferences() {
 // ---------------------------------------------------------------------------------------------------
 
 // show cookie dialog on page load if enabled
-const cookieDialog = root.querySelector('dialog#cookie-dialog');
+const cookieDialog = root.querySelector('dialog');
 if (cookieDialog && cookieDialog.hasAttribute("data-enabled")) showConsentDialog()
 
 initCookieModal();
