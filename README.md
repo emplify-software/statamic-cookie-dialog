@@ -351,33 +351,58 @@ English or `de` for German).
 In the translation file, you can define the mapping of the default English texts to your desired language
 (see https://laravel.com/docs/11.x/localization#using-translation-strings-as-keys for further information).
 
-## Customizing CSS
+## 🎨 Customizing CSS
 
-The cookie dialog is embedded inside a shadow DOM to prevent CSS conflicts with your website's styles.
-This means that any CSS you write in your own stylesheets will not affect the cookie dialog.
+The cookie dialog and floating button are embedded inside a shadow DOM to prevent CSS conflicts with your website's styles.
+This means that any CSS you write in your project will not affect the cookie dialog or floating button.
 
 However, you can still customize some parts of the cookie dialog by using the `::part()` pseudo-element selector.
 
-With the part selector, you can select the following parts inside the cookie dialog:
- * `::part(text)` to apply styles to all text inside the dialog
- * `::part(dialog)` to apply styles on the outer dialog element
- * `::part(button)` to apply styles to the buttons inside the dialog
+With the part selector, you can style the following parts inside the cookie dialog:
+ * `#cookie-dialog::part(dialog)` to apply styles on the outer dialog element
+ * `#cookie-dialog::part(text)` to apply styles to all texts inside the dialog
+ * `#cookie-dialog::part(button)` to apply styles to the buttons inside the dialog
 
-Example:
+Examples:
 ```css
 /* Change the border radius of the dialog */
-#cookie-dialog-container::part(dialog) {
+#cookie-dialog::part(dialog) {
     border-radius: 20px;
 }
 
 /* Change the text color of the dialog */
-#cookie-dialog-container::part(text) {
+#cookie-dialog::part(text) {
     color: #333;
+    font-family: 'Helvetica', sans-serif!important; /** '!important' is required to override the default font family */
 }
 ```
-
 > [!NOTE]
-> If you using Tailwind 4+ in your project, the default sans font will be automatically applied to the cookie dialog.
+> If you are using Tailwind 4+, the default sans font that is configured in your project
+> is automatically applied to the cookie dialog.
+
+Similarly, you can use the `::part()` pseudo-element selector to style the floating button:
+
+* `#cookie-dialog-button::part(button)` to apply styles to the button element
+* `#cookie-dialog-button::part(icon)` to apply styles to the icon inside the button
+* `#cookie-dialog-button::part(text)` to apply styles to the text inside the button
+
+Examples:
+```css
+/* Change the border radius of the button */
+#cookie-dialog-button::part(button) {
+    border-radius: 10px;
+}
+
+/* Change the size of the icon */
+#cookie-dialog-button::part(icon) {
+  width: 30px;
+}
+
+/* Change the font size of the button text */
+#cookie-dialog-button::part(text) {
+    font-size: 14px;
+}
+```
 
 ## 📄 License
 
