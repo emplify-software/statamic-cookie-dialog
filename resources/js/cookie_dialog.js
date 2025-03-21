@@ -101,7 +101,7 @@ function getCookiePreferences() {
  */
 function enableDOMSectionsForCookies(allowedCookies, allowedGroups) {
     // load templates that are allowed
-    for (const template of root.querySelectorAll(`template[data-requires-cookie], template[data-requires-cookie-group]`)) {
+    for (const template of document.querySelectorAll(`template[data-requires-cookie], template[data-requires-cookie-group]`)) {
         // check if all required cookies and cookie groups are allowed
         const requiredCookies = template.dataset.requiresCookie?.split('|');
         const requiredGroups = template.dataset.requiresCookieGroup?.split('|');
@@ -116,7 +116,7 @@ function enableDOMSectionsForCookies(allowedCookies, allowedGroups) {
     }
 
     // remove fallback content for allowed cookies
-    for (const container of root.querySelectorAll(`[data-denied-cookie], [data-denied-cookie-group]`)) {
+    for (const container of document.querySelectorAll(`[data-denied-cookie], [data-denied-cookie-group]`)) {
         // check if all denied cookies / cookie groups are now allowed
         const deniedCookies = container.dataset.deniedCookie?.split('|');
         const deniedGroups = container.dataset.deniedCookieGroup?.split('|');
