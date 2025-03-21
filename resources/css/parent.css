@@ -1,0 +1,11 @@
+/**
+Applies the default sans font to all cookie dialog texts (only works in Tailwind v4+, when --font-sans is defined)
+ */
+#cookie-dialog::part(text), #cookie-dialog-button::part(text) {
+    font-family: var(--font-sans);
+}
+
+#cookie-dialog-button {
+    position: absolute;
+    z-index: 100;
+}

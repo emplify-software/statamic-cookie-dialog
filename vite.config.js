@@ -6,6 +6,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/cookie_banner.css',
+                'resources/css/parent.css',
                 'resources/js/cookie_dialog.js',
 
                 // Control Panel assets.

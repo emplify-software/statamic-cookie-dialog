@@ -32,7 +32,8 @@ class ServiceProvider extends AddonServiceProvider
             $nav->create('Cookie Dialog')
                 ->section('Tools')
                 ->icon('toggle')
-                ->route('cookie-dialog.edit');
+                ->route('cookie-dialog.edit')
+                ->can('manage cookie dialog');
         });
 
         Permission::extend(function () {

@@ -1,18 +1,2 @@
+@import "tailwindcss/base";
 @import "tailwindcss/utilities";
-
-/* Prevent body from scrolling while cookie dialog is displayed */
-body:has(dialog#cookie-dialog[open]) {
-    overflow: hidden;
-}
-
-/* Make sure there's no outline around the cookie dialog */
-dialog#cookie-dialog:focus {
-    outline: none;
-}
-
-/** required for compatibility with tailwind 4, where these variables are no longer defined or have different default values */
-.checkbox:after {
-    --tw-skew-x: 0;
-    --tw-skew-y: 0;
-    --tw-rotate: 0;
-}

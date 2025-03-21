@@ -1,3 +1,5 @@
+const root = document.querySelector("#cookie-dialog").shadowRoot;
+
 let allowDialogClose = false;
 let reloadPageAfterClose;
 
@@ -15,7 +17,7 @@ function initCookieModal() {
     })
 
     // prevent close on escape key
-    document.addEventListener('keydown', (event) => {
+    root.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && !allowDialogClose) {
             event.preventDefault();
         }
@@ -40,7 +42,7 @@ function initCookieModal() {
 }
 
 function initGroupToggles() {
-    const groups = document.querySelectorAll("[data-cookie-group]");
+    const groups = root.querySelectorAll("[data-cookie-group]");
     for (const group of groups) {
         const toggle = group.querySelector("input[type='checkbox']");
         const cookieToggles = group.querySelectorAll("[data-cookie] input[type='checkbox']");
@@ -66,6 +68,9 @@ function showConsentDialog() {
     cookieDialog.showModal();
     cookieDialog.classList.remove('es-opacity-0');
     cookieDialog.classList.remove('es-translate-y-10');
+
+    // prevent scrolling on body
+    document.body.style.overflow = 'hidden';
 }
 
 /**
@@ -75,6 +80,9 @@ function handleConsentDialogClose() {
     cookieDialog.classList.add('es-opacity-0');
     cookieDialog.classList.add('es-translate-y-10');
     reloadPageAfterClose = undefined;
+
+    // allow scrolling on body
+    document.body.style.overflow = 'auto';
 }
 
 function getCookiePreferences() {
@@ -93,7 +101,7 @@ function getCookiePreferences() {
  */
 function enableDOMSectionsForCookies(allowedCookies, allowedGroups) {
     // load templates that are allowed
-    for (const template of document.querySelectorAll(`template[data-requires-cookie], template[data-requires-cookie-group]`)) {
+    for (const template of root.querySelectorAll(`template[data-requires-cookie], template[data-requires-cookie-group]`)) {
         // check if all required cookies and cookie groups are allowed
         const requiredCookies = template.dataset.requiresCookie?.split('|');
         const requiredGroups = template.dataset.requiresCookieGroup?.split('|');
@@ -108,7 +116,7 @@ function enableDOMSectionsForCookies(allowedCookies, allowedGroups) {
     }
 
     // remove fallback content for allowed cookies
-    for (const container of document.querySelectorAll(`[data-denied-cookie], [data-denied-cookie-group]`)) {
+    for (const container of root.querySelectorAll(`[data-denied-cookie], [data-denied-cookie-group]`)) {
         // check if all denied cookies / cookie groups are now allowed
         const deniedCookies = container.dataset.deniedCookie?.split('|');
         const deniedGroups = container.dataset.deniedCookieGroup?.split('|');
@@ -131,7 +139,7 @@ function getCheckedCookieNames() {
 }
 
 function getCookieVersion() {
-    return document.querySelector('[data-cookie-version]').dataset.cookieVersion;
+    return root.querySelector('[data-cookie-version]').dataset.cookieVersion;
 }
 
 /**
@@ -140,7 +148,7 @@ function getCookieVersion() {
  * @returns
  */
 function isInitialConsent() {
-    return !!document.querySelector('dialog[data-enabled]');
+    return !!root.querySelector('dialog[data-enabled]');
 }
 
 
@@ -148,7 +156,7 @@ function isInitialConsent() {
  * Returns an array of cookie names listed in the cookie modal.
  */
 function getCookieNames(querySelector) {
-    const cookies = document.querySelectorAll(querySelector);
+    const cookies = root.querySelectorAll(querySelector);
     return Array.from(cookies).map(cookie => cookie.dataset['cookie']);
 }
 
@@ -156,7 +164,7 @@ function getCookieNames(querySelector) {
  * Get the cookie groups with their cookies from the DOM (all cookies are set to false).
  */
 function getCookieGroups() {
-    const groupElements = document.querySelectorAll("[data-cookie-group]");
+    const groupElements = root.querySelectorAll("[data-cookie-group]");
     const groups = {};
     for (const groupEl of groupElements) {
         const groupIdentifier = groupEl.dataset.cookieGroup;
@@ -186,7 +194,7 @@ function setConsentCookie(allowedCookies, acceptAll = false) {
     for (const [groupIdentifier, group] of Object.entries(groups)) {
         // group without individual cookies - check if checked and add pseudo (*) cookie
         if (Object.keys(group).length === 0) {
-            group['*'] = acceptAll || !!document.querySelector(`[data-cookie-group="${groupIdentifier}"]:has(:checked)`);
+            group['*'] = acceptAll || !!root.querySelector(`[data-cookie-group="${groupIdentifier}"]:has(:checked)`);
             continue;
         }
 
@@ -266,7 +274,7 @@ function populateCookiePreferences() {
 
     // Go through all groups
     for (const [groupIdentifier, cookies] of Object.entries(groups)) {
-        const groupEl = document.querySelector(`[data-cookie-group="${groupIdentifier}"]`);
+        const groupEl = root.querySelector(`[data-cookie-group="${groupIdentifier}"]`);
         // Skip if group is not found
         if (!groupEl) continue;
         const groupToggle = groupEl.querySelector("input[type='checkbox']");
@@ -288,7 +296,7 @@ function populateCookiePreferences() {
 // ---------------------------------------------------------------------------------------------------
 
 // show cookie dialog on page load if enabled
-const cookieDialog = document.querySelector('dialog#cookie-dialog');
+const cookieDialog = root.querySelector('dialog');
 if (cookieDialog && cookieDialog.hasAttribute("data-enabled")) showConsentDialog()
 
 initCookieModal();
