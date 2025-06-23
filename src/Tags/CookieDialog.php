@@ -23,6 +23,29 @@ class CookieDialog extends Tags
     {
         $settings = CookieDialogHelper::getContents();
 
+        // Resolve URLs for any entries in the info pages
+        if (!empty($settings['info_pages']['privacy_policy_link'])) {
+            if (str_starts_with($settings['info_pages']['privacy_policy_link'], 'entry::')) {
+                $entryId = substr($settings['info_pages']['privacy_policy_link'], 7);
+                $entry = Entry::find($entryId);
+                if (!$entry) {
+                    $settings['info_pages']['privacy_policy_link'] = '';
+                }
+                $settings['info_pages']['privacy_policy_link'] = $entry->absoluteUrl();
+            }
+        }
+
+        if (!empty($settings['info_pages']['imprint_link'])) {
+            if (str_starts_with($settings['info_pages']['imprint_link'], 'entry::')) {
+                $entryId = substr($settings['info_pages']['imprint_link'], 7);
+                $entry = Entry::find($entryId);
+                if (!$entry) {
+                    $settings['info_pages']['imprint_link'] = '';
+                }
+                $settings['info_pages']['imprint_link'] = $entry->absoluteUrl();
+            }
+        }
+
         $cookieConsentData = CookieDialogHelper::getCookieConsentData();
         $dialogEnabled =
             ! Arr::get($this->params, "hidden", false) && // force hide the dialog
