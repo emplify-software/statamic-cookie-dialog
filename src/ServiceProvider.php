@@ -19,6 +19,7 @@ class ServiceProvider extends AddonServiceProvider
         Tags\Cookie::class,
         Tags\CookieGroups::class,
         Tags\CookieDialogButton::class,
+        Tags\CookieScripts::class,
     ];
 
     public function bootAddon(): void
