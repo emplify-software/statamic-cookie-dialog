@@ -76,6 +76,7 @@ To enable the cookie dialog for all pages, put the following tag anywhere in you
 >    {{ cookie_dialog }}
 > {{ /nocache }}
 > ```
+> If you want to use *full measure static caching*, see the [Full Measure Static Caching](#full-measure-static-caching) section for more information.
 
 This will render a popup dialog that will ask the user to accept or decline cookies.
 A description text and an example cookie group is provided by default.
@@ -249,6 +250,20 @@ tag of your website with JavaScript:
 document.documentElement.classList.add('es-dark'); // Enable dark mode
 document.documentElement.classList.remove('es-dark'); // Enable light mode
 ```
+
+### Full Measure Static Caching
+
+Due to a limitation of Statamic's [Full measure caching strategy](https://statamic.dev/static-caching#file-driver) in combination with nocache tags,
+to support full measure static caching, you need to add the following tag (e.g. in your `layout.antlers.html` file) to ensure that the necessary
+cookie scripts are loaded correctly:
+
+```antlers
+{{ cookie_scripts }}
+```
+
+Make sure that this tag is *not* wrapped in a `{{ nocache }}` tag.
+
+This is a temporary workaround until Statamic supports loading scripts in nocache tags.
 
 
 ## 🧩 JavaScript API

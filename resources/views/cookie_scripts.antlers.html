@@ -1,0 +1,26 @@
+<script>
+    function loadScript(scriptNode) {
+        const activeScript = document.createElement("script");
+        [...scriptNode.attributes].forEach(attr =>
+            activeScript.setAttribute(attr.name, attr.value)
+        );
+        activeScript.textContent = scriptNode.textContent;
+        scriptNode.parentNode.replaceChild(activeScript, scriptNode);
+    }
+
+    document.addEventListener("statamic:nocache.replaced", () => {
+        const parentNodes = [
+            // all nodes with data-nocache attribute
+            ...document.querySelectorAll("[data-nocache]"),
+            // template contents must be extracted separately
+            ...[...document.querySelectorAll("[data-nocache] template")].map(n => n.content),
+            // shadow root contents must be extracted separately
+            ...[...document.querySelectorAll("[data-nocache] *")].filter(n => n.shadowRoot).map(n => n.shadowRoot),
+        ];
+
+        // find all script tags within the nocache nodes and load them
+        parentNodes.map(n => [...n.querySelectorAll("script")])
+            .flat()
+            .forEach(loadScript);
+    });
+</script>
