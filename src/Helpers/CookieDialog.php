@@ -57,7 +57,13 @@ class CookieDialog
             return null;
         }
 
-        return $cookieConsent ? json_decode($cookieConsent, true) : null;
+        if (! $cookieConsent) {
+            return null;
+        }
+
+        $decoded = json_decode($cookieConsent, true);
+
+        return is_array($decoded) ? $decoded : null;
     }
 
     /**
