@@ -7,9 +7,9 @@
     },
     "require": {
         "php": "^8.2",
-        "laravel/framework": ">=10",
+        "laravel/framework": "^11.48",
         "laravel/tinker": "^2.9",
-        "statamic/cms": ">=4.0"
+        "statamic/cms": "^5.73"
     },
     "extra": {
         "statamic": {
