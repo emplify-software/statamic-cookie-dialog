@@ -87,7 +87,9 @@ function handleConsentDialogClose() {
 
 function getCookiePreferences() {
     try {
-        return JSON.parse(getCookie('cookie-consent'));
+        const cookieConsent = JSON.parse(getCookie('cookie-consent'));
+        if (cookieConsent instanceof Array) return cookieConsent;
+        else return null;
     }
     catch (e) {
         return null;
