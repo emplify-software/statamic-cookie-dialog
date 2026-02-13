@@ -1,5 +1,7 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import statamic from '@statamic/cms/vite-plugin';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
     plugins: [
@@ -9,18 +11,16 @@ export default defineConfig({
                 'resources/css/parent.css',
                 'resources/js/cookie_dialog.js',
 
-                // Control Panel assets.
-                // https://statamic.dev/extending/control-panel#adding-css-and-js-assets
-                // 'resources/css/cp.css',
-                // 'resources/js/cp.js',
+                'resources/js/addon.js',
+                'resources/css/addon.css'
             ],
             publicDirectory: 'resources/dist',
-            // refresh: true,
-        })
+        }),
+        statamic(),
+        tailwindcss(),
     ],
 
     build: {
-        manifest: false,
         rollupOptions: {
             output: {
                 entryFileNames: `[name].js`,

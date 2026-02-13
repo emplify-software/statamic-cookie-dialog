@@ -1,0 +1,29 @@
+{
+  "resources/css/addon.css": {
+    "file": "addon.css",
+    "src": "resources/css/addon.css",
+    "isEntry": true
+  },
+  "resources/css/cookie_banner.css": {
+    "file": "cookie_banner.css",
+    "src": "resources/css/cookie_banner.css",
+    "isEntry": true
+  },
+  "resources/css/parent.css": {
+    "file": "parent.css",
+    "src": "resources/css/parent.css",
+    "isEntry": true
+  },
+  "resources/js/addon.js": {
+    "file": "addon.js",
+    "name": "addon",
+    "src": "resources/js/addon.js",
+    "isEntry": true
+  },
+  "resources/js/cookie_dialog.js": {
+    "file": "cookie_dialog.js",
+    "name": "cookie_dialog",
+    "src": "resources/js/cookie_dialog.js",
+    "isEntry": true
+  }
+}
