@@ -9,11 +9,11 @@
          */
         function updateMode() {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                dialog.classList.add('es-dark')
-                dialogButton?.classList.add('es-dark')
+                dialog.classList.add('dark')
+                dialogButton?.classList.add('dark')
             } else {
-                dialog.classList.remove('es-dark')
-                dialogButton?.classList.remove('es-dark')
+                dialog.classList.remove('dark')
+                dialogButton?.classList.remove('dark')
             }
         }
 
@@ -23,9 +23,9 @@
 {{ elseif data:dark_light_mode == 'dark' }}
     <script type="module">
         const dialog = document.querySelector("#cookie-dialog").shadowRoot.querySelector("dialog");
-        dialog.classList.add('es-dark')
+        dialog.classList.add('dark')
 
         const dialogButton = document.querySelector("#cookie-dialog-button").shadowRoot.querySelector("button");
-        dialogButton?.classList.add('es-dark')
+        dialogButton?.classList.add('dark')
     </script>
 {{ /if }}

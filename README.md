@@ -244,11 +244,11 @@ system settings.
 If you don't want to use the automatic mode, you can select a specific color mode in the control panel 
 under `Tools > Cookie Dialog > Customization > Theme`.
 
-To toggle between dark and light mode dynamically, you can also add or remove the `es-dark` class in the `<html>`
+To toggle between dark and light mode dynamically, you can also add or remove the `dark` class in the `<html>`
 tag of your website with JavaScript:
 ```js
-document.documentElement.classList.add('es-dark'); // Enable dark mode
-document.documentElement.classList.remove('es-dark'); // Enable light mode
+document.documentElement.classList.add('dark'); // Enable dark mode
+document.documentElement.classList.remove('dark'); // Enable light mode
 ```
 
 ### Full Measure Static Caching

@@ -28,8 +28,8 @@ class ServiceProvider extends AddonServiceProvider
             'resources/css/parent.css',
             'resources/js/cookie_dialog.js',
 
-            'resources/js/addon.js',
-            'resources/css/addon.css'
+            'resources/js/cp.js',
+            'resources/css/cp.css'
         ],
         'publicDirectory' => 'resources/dist',
     ];

@@ -1,1 +1,1 @@
-#cookie-dialog::part(text),#cookie-dialog-button::part(text){font-family:var(--font-sans)}#cookie-dialog-button{position:absolute;z-index:100}
+#cookie-dialog::part(text),#cookie-dialog-button::part(text){font-family:var(--font-sans-inherit)}#cookie-dialog-button{position:absolute;z-index:100}

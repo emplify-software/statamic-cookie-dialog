@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/parent.css">
 
-<div id="cookie-dialog-button"><template shadowrootmode="open">
+<div id="cookie-dialog-button" style="--font-sans-root: var(--font-sans)"><template shadowrootmode="open">
     {{ if data:enabled }}<script type="module" src="/vendor/statamic-cookie-dialog/build/cookie_dialog.js"></script>{{ /if }}
     <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/cookie_banner.css">
     {{ partial src="cookie-dialog::utils/_dark_light_mode" }}
