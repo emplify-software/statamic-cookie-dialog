@@ -12,7 +12,6 @@ export default defineConfig({
                 'resources/js/cookie_dialog.js',
 
                 'resources/js/cp.js',
-                'resources/css/cp.css'
             ],
             publicDirectory: 'resources/dist',
         }),

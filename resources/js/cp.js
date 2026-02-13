@@ -1,3 +1,4 @@
+import Settings from './components/Settings.vue';
 Statamic.booting(() => {
-    // Statamic.$components.register('component-name', YourComponent);
+    Statamic.$inertia.register('statamic-cookie-dialog::settings', Settings);
 });

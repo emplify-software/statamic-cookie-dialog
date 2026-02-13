@@ -24,12 +24,7 @@ class ServiceProvider extends AddonServiceProvider
 
     protected $vite = [
         'input' => [
-            'resources/css/cookie_banner.css',
-            'resources/css/parent.css',
-            'resources/js/cookie_dialog.js',
-
             'resources/js/cp.js',
-            'resources/css/cp.css'
         ],
         'publicDirectory' => 'resources/dist',
     ];
