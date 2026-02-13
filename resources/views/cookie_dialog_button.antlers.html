@@ -1,8 +1,8 @@
-<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/parent.css">
+<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/parent.css">
 
 <div id="cookie-dialog-button" style="--font-sans-root: var(--font-sans)"><template shadowrootmode="open">
-    {{ if data:enabled }}<script type="module" src="/vendor/statamic-cookie-dialog/build/cookie_dialog.js"></script>{{ /if }}
-    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/cookie_banner.css">
+    {{ if data:enabled }}<script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>{{ /if }}
+    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
     {{ partial src="cookie-dialog::utils/_dark_light_mode" }}
 
     {{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}

@@ -33,6 +33,7 @@ class ServiceProvider extends AddonServiceProvider
     {
         $this->publishes([
             __DIR__.'/../content/cookie-dialog' => base_path('content/cookie-dialog'),
+            __DIR__.'/../resources/dist/build' => public_path('vendor/statamic-cookie-dialog'),
         ], 'statamic-cookie-dialog');
 
         Nav::extend(function ($nav) {
