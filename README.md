@@ -87,7 +87,7 @@ A description text and an example cookie group is provided by default.
 You have full control over the dialog content and all cookie settings in the control panel under
 `Tools > Cookie Dialog`.
 
-<img src="resources/img/cp-screenshot.png">
+<img src="resources/img/cp_screenshot.png">
 
 In the **"Cookies"** tab, you can enable or disable the cookie dialog, set the [cookie version](#-cookie-versioning),
 and create or edit cookie groups.
