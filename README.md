@@ -1,7 +1,6 @@
 # Statamic Cookie Dialog
 
-[![Statamic v4](https://img.shields.io/badge/Statamic-4.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
-[![Statamic v5](https://img.shields.io/badge/Statamic-5.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
+[![Statamic v6](https://img.shields.io/badge/Statamic-6.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
 
 Manage cookie preferences in your Statamic projects with ease.
 
