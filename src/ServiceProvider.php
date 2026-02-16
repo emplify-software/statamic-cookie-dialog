@@ -10,6 +10,9 @@ class ServiceProvider extends AddonServiceProvider
 {
     protected $viewNamespace = 'cookie-dialog';
 
+    protected $publishAfterInstall = false;
+
+
     protected $routes = [
         'cp' => __DIR__.'/../routes/cp.php',
     ];
