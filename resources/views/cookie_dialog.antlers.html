@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/parent.css">
+<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/parent.css">
 
 <div id="cookie-dialog" style="--font-sans-root: var(--font-sans)"><template shadowrootmode="open">
 
-    <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
-    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
+    <script type="module" src="/vendor/statamic-cookie-dialog/build/cookie_dialog.js"></script>
+    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/cookie_banner.css">
     {{ partial src="cookie-dialog::utils/_dark_light_mode" }}
 
     {{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}
