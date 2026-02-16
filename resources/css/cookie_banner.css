@@ -1,2 +1,7 @@
-@import "tailwindcss/base";
-@import "tailwindcss/utilities";
+@import "tailwindcss";
+
+@theme {
+    --font-*: initial;
+    --font-sans-inherit: var(--font-sans-root, 'OpenSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
+}

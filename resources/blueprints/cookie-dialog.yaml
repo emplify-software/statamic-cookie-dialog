@@ -80,10 +80,10 @@ tabs:
                         instructions: 'Define the cookies that are part of this group.'
                         sets:
                           cookies:
-                            display: Cookies
+                            display: Cookie
                             sets:
                               cookie:
-                                display: Cookies
+                                display: Cookie
                                 fields:
                                   -
                                     handle: cookie_identifier

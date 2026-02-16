@@ -1,7 +1,6 @@
 # Statamic Cookie Dialog
 
-[![Statamic v4](https://img.shields.io/badge/Statamic-4.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
-[![Statamic v5](https://img.shields.io/badge/Statamic-5.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
+[![Statamic v6](https://img.shields.io/badge/Statamic-6.0-FF269E?style=for-the-badge&link=https://statamic.com)](https://statamic.com)
 
 Manage cookie preferences in your Statamic projects with ease.
 
@@ -23,6 +22,10 @@ user's cookie preferences.
 ✅ JavaScript API<br>
 ✅ Dark/light mode support<br>
 ✅ Multi-Site support<br>
+
+> [!NOTE]
+> If you want to upgrade your existing Statamic 4 or 5 project to Statamic 6 and already have this addon installed,
+> take a look at the [Upgrading to Statamic 6](#upgrading-to-statamic-6) section.
 
 > [!NOTE]
 > This addon does not guarantee GDPR compliance. Please consult with a legal expert to ensure that your website is
@@ -244,11 +247,11 @@ system settings.
 If you don't want to use the automatic mode, you can select a specific color mode in the control panel 
 under `Tools > Cookie Dialog > Customization > Theme`.
 
-To toggle between dark and light mode dynamically, you can also add or remove the `es-dark` class in the `<html>`
+To toggle between dark and light mode dynamically, you can also add or remove the `dark` class in the `<html>`
 tag of your website with JavaScript:
 ```js
-document.documentElement.classList.add('es-dark'); // Enable dark mode
-document.documentElement.classList.remove('es-dark'); // Enable light mode
+document.documentElement.classList.add('dark'); // Enable dark mode
+document.documentElement.classList.remove('dark'); // Enable light mode
 ```
 
 ### Full Measure Static Caching
@@ -443,3 +446,15 @@ removed when you purchase the [pro version](https://statamic.com/addons/emplify-
 This addon is actively maintained and supported by [emplify software](https://emplify-software.de/). If you encounter
 any issues, feel free to open an issue on
 the [GitHub repository](https://github.com/emplify-software/statamic-cookie-dialog).
+
+
+## Upgrading to Statamic 6
+
+This addon is compatible with Statamic 6. If you previously had the addon installed in a Statamic 4 or 5 project
+and are upgrading to Statamic 6, make sure to update set the version for `"emplify-software/statamic-cookie-dialog"` to `"^3.0"` in your `composer.json` file.
+Afterward, run the following commands to update the addon to the latest version and publish the new assets:
+
+``` bash
+composer require emplify-software/statamic-cookie-dialog
+php artisan vendor:publish --tag=statamic-cookie-dialog
+```

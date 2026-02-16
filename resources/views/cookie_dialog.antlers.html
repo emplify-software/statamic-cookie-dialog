@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/parent.css">
+<link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/parent.css">
 
-<div id="cookie-dialog"><template shadowrootmode="open">
+<div id="cookie-dialog" style="--font-sans-root: var(--font-sans)"><template shadowrootmode="open">
 
-    <script type="module" src="/vendor/statamic-cookie-dialog/cookie_dialog.js"></script>
-    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/cookie_banner.css">
+    <script type="module" src="/vendor/statamic-cookie-dialog/build/cookie_dialog.js"></script>
+    <link rel="stylesheet" href="/vendor/statamic-cookie-dialog/build/cookie_banner.css">
     {{ partial src="cookie-dialog::utils/_dark_light_mode" }}
 
     {{ is_automatic_mode = (data:dark_light_mode == 'auto' || !data:dark_light_mode) }}
@@ -45,72 +45,72 @@
         </style>
     {{ /if }}
 
-    <dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog-inner" class="es-m-auto es-fixed es-max-w-full sm:es-max-w-xl es-max-h-full es-translate-y-10 es-opacity-0 es-transition-all es-duration-700 es-bg-transparent es-overflow-hidden backdrop:es-backdrop-blur-sm backdrop:es-bg-opacity-40 backdrop:es-bg-black focus:es-outline-0">
+    <dialog {{ if enabled }} data-enabled {{ /if }} data-cookie-version="{{ data:version }}" id="cookie-dialog-inner" class="m-auto fixed max-w-full sm:max-w-xl max-h-full translate-y-10 opacity-0 transition-all duration-700 bg-transparent overflow-hidden backdrop:backdrop-blur-sm backdrop:bg-black/40 focus:outline-0">
 
-        <div part="dialog" class="m-0 md:es-m-2 es-bg-white es-mx-2 es-max-h-[93dvh] dark:es-bg-gray-800 es-text-black es-backdrop-blur-md es-rounded-3xl es-relative es-overflow-y-auto dark:es-text-white">
-            <div id="cookie-section-container" class="es-transition-all">
-                <section id="cookie-main-section" class="es-overflow-hidden es-transition-all es-duration-150 es-max-h-full">
-                    <div class="es-p-6 md:es-p-8">
-                        <h3 part="text" class="es-text-3xl es-font-extrabold es-mb-5">
+        <div part="dialog" class="m-0 md:m-2 bg-white mx-2 max-h-[93dvh] dark:bg-gray-800 text-black backdrop-blur-md rounded-3xl relative overflow-y-auto dark:text-white">
+            <div id="cookie-section-container" class="transition-all">
+                <section id="cookie-main-section" class="overflow-hidden transition-all duration-150 max-h-full">
+                    <div class="p-6 md:p-8">
+                        <h3 part="text" class="text-3xl font-extrabold mb-5">
                             {{ trans :key="data:heading" }}
                         </h3>
 
-                        <div part="text" class="es-text-gray-500 dark:es-text-gray-300">
+                        <div part="text" class="text-gray-500 dark:text-gray-300">
                             {{ trans :key="data:description" }}
                         </div>
                         {{ if data:info_pages:imprint_link || data:info_pages:privacy_policy_link }}
-                            <div class="es-text-gray-500 dark:es-text-gray-300 es-mt-4">
+                            <div class="text-gray-500 dark:text-gray-300 mt-4">
                                 {{ if data:info_pages:imprint_link }}
-                                    <a part="text" href="{{ (data:info_pages:imprint_link | url) ?? data:info_pages:imprint_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:imprint_title" }}</a>
+                                    <a part="text" href="{{ (data:info_pages:imprint_link | url) ?? data:info_pages:imprint_link }}" data-info-link class="text-blue-600 dark:text-blue-400">{{ trans :key="data:info_pages:imprint_title" }}</a>
                                 {{ /if }}
                                 {{ if data:info_pages:imprint_link && data:info_pages:privacy_policy_link }}
                                     &nbsp;•&nbsp;
                                 {{ /if }}
                                 {{ if data:info_pages:privacy_policy_link }}
-                                    <a part="text" href="{{ (data:info_pages:privacy_policy_link | url) ?? data:info_pages:privacy_policy_link }}" data-info-link class="es-text-blue-600 dark:es-text-blue-400">{{ trans :key="data:info_pages:privacy_policy_title" }}</a>
+                                    <a part="text" href="{{ (data:info_pages:privacy_policy_link | url) ?? data:info_pages:privacy_policy_link }}" data-info-link class="text-blue-600 dark:text-blue-400">{{ trans :key="data:info_pages:privacy_policy_title" }}</a>
                                 {{ /if }}
                             </div>
                         {{ /if }}
                     </div>
                 </section>
 
-                <section class="es-flex es-flex-col es-px-6 md:es-px-8">
+                <section class="flex flex-col px-6 md:px-8">
 
-                    <div id="cookie-custom-section" class="es-transition-all es-duration-150 es-flex-1">
+                    <div id="cookie-custom-section" class="transition-all duration-150 flex-1">
                         <ul>
                             {{ data:groups }}
-                                <li class="es-border-gray-200 es-pt-5 es-border-b last-of-type:!es-border-b-0" data-cookie-group="{{ identifier }}"{{required ? " data-cookie-required" : ""}}>
-                                    <div class="es-mb-5">
-                                        <label class="es-w-full es-inline-flex es-items-center es-cursor-pointer es-justify-between" data-toggle-switch>
-                                            <span part="text" class="es-font-semibold">
+                                <li class="border-gray-200 pt-5 border-b last-of-type:!border-b-0" data-cookie-group="{{ identifier }}"{{required ? " data-cookie-required" : ""}}>
+                                    <div class="mb-5">
+                                        <label class="w-full inline-flex items-center cursor-pointer justify-between" data-toggle-switch>
+                                            <span part="text" class="font-semibold">
                                                 {{ trans :key="name ?? identifier" }}
                                             </span>
-                                            <input type="checkbox" class="es-sr-only es-peer" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
-                                            <div class="checkbox es-relative es-w-11 es-h-6 es-bg-gray-200 es-rounded-full es-peer peer-checked:after:es-translate-x-full peer-checked:after:es-border-white after:es-content-[''] after:es-absolute after:es-top-0.5 after:es-start-[2px] after:es-bg-white after:es-border-gray-300 after:es-border after:es-rounded-full after:es-h-5 after:es-w-5 after:es-transition-all dark:es-border-gray-600 peer-checked:!es-bg-gray-700 peer-disabled:es-cursor-not-allowed peer-disabled:es-opacity-50"></div>
+                                            <input type="checkbox" class="sr-only peer" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
+                                            <div class="checkbox relative w-11 h-6 bg-gray-200 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-50"></div>
                                         </label>
                                     </div>
                                     {{  if description }}
-                                        <div part="text" data-description class="description es-break-words es-text-gray-500 dark:es-text-gray-200 es-mb-5">
+                                        <div part="text" data-description class="description break-words text-gray-500 dark:text-gray-200 mb-5">
                                             {{ trans :key="description" }}
                                         </div>
                                     {{  /if }}
                                     {{ if cookies | length }}
-                                    <details class="es-mt-3 es-mb-5 es-text-sm">
-                                        <summary part="text" class="es-cursor-pointer">
+                                    <details class="mt-3 mb-5 text-sm">
+                                        <summary part="text" class="cursor-pointer">
                                             {{ data:cookie_details }} <span>(<span class="cookie-count">{{ cookies | length }}</span>)</span>
                                         </summary>
-                                        <ul class="es-flex es-flex-col es-gap-3 es-mt-4">
+                                        <ul class="flex flex-col gap-3 mt-4">
                                             {{ cookies }}
-                                                <li class="es-text-gray-500 dark:es-text-gray-300" data-cookie="{{ cookie_identifier }}">
-                                                    <div class="es-flex es-flex-col es-justify-between">
+                                                <li class="text-gray-500 dark:text-gray-300" data-cookie="{{ cookie_identifier }}">
+                                                    <div class="flex flex-col justify-between">
                                                         <div>
-                                                            <div class="es-flex es-gap-4 es-items-baseline es-pl-4">
+                                                            <div class="flex gap-4 items-baseline pl-4">
                                                                 <div>
-                                                                    <input id="checkbox-{{ cookie_identifier }}" type="checkbox" class="es-w-32 es-translate-y-[2px] es-w-4 es-h-4 es-text-blue-600 es-bg-gray-100 es-border-gray-300 dark:es-ring-offset-gray-800 focus:es-ring-2 dark:es-bg-gray-700 dark:es-border-gray-600" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
+                                                                    <input id="checkbox-{{ cookie_identifier }}" type="checkbox" class="translate-y-[2px] w-4 h-4 bg-gray-100 border-gray-300 ring-offset-gray-500 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" {{required || enabled_default ? " checked" : ""}}{{required ? " disabled" : ""}}>
                                                                 </div>
                                                                 <div>
                                                                     <label for="checkbox-{{ cookie_identifier }}">
-                                                                        <span part="text" class="es-font-semibold es-break-words es-mr-4">
+                                                                        <span part="text" class="font-semibold break-words mr-4">
                                                                             {{ trans :key="cookie_name ?? cookie_identifier" }}
                                                                         </span>
                                                                         <span part="text">
@@ -120,7 +120,7 @@
                                                                         </span>
                                                                     </label>
 
-                                                                    <p part="text" class="es-break-words">
+                                                                    <p part="text" class="break-words">
                                                                         {{ if cookie_description }}
                                                                             {{ trans :key="cookie_description" }}
                                                                         {{ /if }}
@@ -145,20 +145,20 @@
 
                 </section>
 
-                <section class="es-sticky es-bottom-0 es-bg-white dark:es-bg-gray-800 es-border-t es-p-6 md:es-p-8">
-                    <div class="es-relative es-flex es-gap-x-4 es-gap-y-2 es-w-full es-flex-wrap">
-                        <button part="button text" autofocus id="accept-all-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 !es-outline-transparent es-bg-gray-700 es-text-white dark:es-bg-white dark:es-text-gray-700 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                <section class="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 p-6 md:p-8">
+                    <div class="relative flex gap-x-4 gap-y-2 w-full flex-wrap">
+                        <button part="button text" autofocus id="accept-all-btn" class="cursor-pointer text-nowrap flex-1 !outline-transparent bg-gray-700 text-white dark:bg-white dark:text-gray-700 px-6 py-2 w-max rounded-lg active:scale-[0.99]">
                             {{ trans :key="data:accept_all" }}
                         </button>
-                        <button part="button text" id="save-preferences-btn" class="es-cursor-pointer es-text-nowrap es-flex-1 es-bg-gray-100 dark:es-bg-gray-600 es-text-gray-600 dark:es-text-gray-300 es-px-6 es-py-2 es-w-max es-rounded-lg active:es-scale-[0.99]">
+                        <button part="button text" id="save-preferences-btn" class="cursor-pointer text-nowrap flex-1 bg-gray-100 dark:bg-gray-600 text-gray-600 dark:text-gray-300 px-6 py-2 w-max rounded-lg active:scale-[0.99]">
                             {{ trans :key="data:save_preferences" }}
                         </button>
                     </div>
                 </section>
 
                 {{ if !$isProEdition }}
-                    <section class="es-text-gray-400 dark:es-text-gray-500 es-text-center es-pb-6 es-text-sm">
-                        Powered by <a class="es-text-gray-500 dark:es-text-gray-400 es-underline es-underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
+                    <section class="text-gray-400 dark:text-gray-500 text-center pb-6 text-sm">
+                        Powered by <a class="text-gray-500 dark:text-gray-400 underline underline-offset-4" target="_blank" href="https://emplify-software.de">emplify software</a>
                     </section>
                 {{ /if }}
             </div>

@@ -66,8 +66,8 @@ function showConsentDialog() {
     populateCookiePreferences();
     // show dialog and fade in
     cookieDialog.showModal();
-    cookieDialog.classList.remove('es-opacity-0');
-    cookieDialog.classList.remove('es-translate-y-10');
+    cookieDialog.classList.remove('opacity-0');
+    cookieDialog.classList.remove('translate-y-10');
 
     // prevent scrolling on body
     document.body.style.overflow = 'hidden';
@@ -77,8 +77,8 @@ function showConsentDialog() {
  * Prepare dialog for fade in on next show.
  */
 function handleConsentDialogClose() {
-    cookieDialog.classList.add('es-opacity-0');
-    cookieDialog.classList.add('es-translate-y-10');
+    cookieDialog.classList.add('opacity-0');
+    cookieDialog.classList.add('translate-y-10');
     reloadPageAfterClose = undefined;
 
     // allow scrolling on body
