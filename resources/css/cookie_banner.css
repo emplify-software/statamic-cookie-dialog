@@ -5,3 +5,8 @@
     --font-sans-inherit: var(--font-sans-root, 'OpenSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji');
 }
+
+::after {
+    /** tailwind fallback variables if not correctly defined for some reason */
+    --tw-translate-y: 0;
+}
