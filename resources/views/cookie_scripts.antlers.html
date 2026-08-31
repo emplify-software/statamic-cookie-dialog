@@ -1,26 +1,66 @@
 <script>
-    function loadScript(scriptNode) {
-        const activeScript = document.createElement("script");
-        [...scriptNode.attributes].forEach(attr =>
-            activeScript.setAttribute(attr.name, attr.value)
-        );
-        activeScript.textContent = scriptNode.textContent;
-        scriptNode.parentNode.replaceChild(activeScript, scriptNode);
-    }
+    // Statamic's client-side {{ nocache }} replacement uses
+    // `element.setHTMLUnsafe()`, whose <script> elements are
+    // permanently inert per the HTML spec -- even once moved
+    // elsewhere in the DOM later (e.g. by this dialog's own
+    // `template.before(template.content)` activation on accept/save).
+    // This tag revives them by swapping in freshly created <script>
+    // elements, which do execute.
+    //
+    // Earlier versions of this tag located the just-replaced content
+    // via `[data-nocache]`, but Statamic's nocache runtime now fully
+    // replaces that placeholder element with the fetched fragment
+    // (rather than keeping it around as a wrapper), so nothing
+    // matches that selector any more by the time this listener runs.
+    // A MutationObserver sidesteps that: it only ever reports nodes
+    // added *after* observation starts, so it doesn't need to
+    // distinguish nocache-injected scripts from the page's own
+    // scripts by location -- anything already on the page when this
+    // tag's own script executes was parsed normally and already ran;
+    // anything added afterwards (nocache injection, or the dialog
+    // moving <template data-requires-cookie> content into the page
+    // once consent is granted) is exactly what needs reviving.
+    (function () {
+        function reviveScript(script) {
+            if (script.dataset.cookieDialogRevived) return;
+            const fresh = document.createElement("script");
+            [...script.attributes].forEach((attr) =>
+                fresh.setAttribute(attr.name, attr.value)
+            );
+            fresh.dataset.cookieDialogRevived = "true";
+            fresh.textContent = script.textContent;
+            script.replaceWith(fresh);
+        }
 
-    document.addEventListener("statamic:nocache.replaced", () => {
-        const parentNodes = [
-            // all nodes with data-nocache attribute
-            ...document.querySelectorAll("[data-nocache]"),
-            // template contents must be extracted separately
-            ...[...document.querySelectorAll("[data-nocache] template")].map(n => n.content),
-            // shadow root contents must be extracted separately
-            ...[...document.querySelectorAll("[data-nocache] *")].filter(n => n.shadowRoot).map(n => n.shadowRoot),
-        ];
+        function reviveScriptsWithin(root) {
+            root.querySelectorAll("script").forEach(reviveScript);
+        }
 
-        // find all script tags within the nocache nodes and load them
-        parentNodes.map(n => [...n.querySelectorAll("script")])
-            .flat()
-            .forEach(loadScript);
-    });
+        function watch(root) {
+            new MutationObserver((mutations) => {
+                for (const { addedNodes } of mutations) {
+                    for (const node of addedNodes) {
+                        if (node.nodeType !== Node.ELEMENT_NODE) continue;
+                        if (node.matches("script")) reviveScript(node);
+                        reviveScriptsWithin(node);
+                        if (node.shadowRoot) {
+                            // A shadow root's content (e.g. this
+                            // dialog's own declarative shadow DOM) is
+                            // attached atomically the instant it's
+                            // created, so it never fires its own
+                            // "childList" mutation -- an observer
+                            // placed on it afterwards would never see
+                            // what's already there. Sweep once
+                            // immediately, then keep watching it for
+                            // anything added later.
+                            reviveScriptsWithin(node.shadowRoot);
+                            watch(node.shadowRoot);
+                        }
+                    }
+                }
+            }).observe(root, { childList: true, subtree: true });
+        }
+
+        watch(document.documentElement);
+    })();
 </script>
