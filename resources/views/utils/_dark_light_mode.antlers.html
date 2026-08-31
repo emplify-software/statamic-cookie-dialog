@@ -1,18 +1,18 @@
 {{ if data:dark_light_mode == 'auto' || !data:dark_light_mode }}
     <!-- automatic dark/light mode -->
     <script type="module">
-        const dialog = document.querySelector("#cookie-dialog").shadowRoot.querySelector("dialog");
-        const dialogButton = document.querySelector("#cookie-dialog-button").shadowRoot.querySelector("button");
+        const dialog = document.querySelector("#cookie-dialog")?.shadowRoot?.querySelector("dialog");
+        const dialogButton = document.querySelector("#cookie-dialog-button")?.shadowRoot?.querySelector("button");
 
         /**
          * switch between dark/light mode based on the system preference
          */
         function updateMode() {
             if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                dialog.classList.add('dark')
+                dialog?.classList.add('dark')
                 dialogButton?.classList.add('dark')
             } else {
-                dialog.classList.remove('dark')
+                dialog?.classList.remove('dark')
                 dialogButton?.classList.remove('dark')
             }
         }
@@ -22,10 +22,10 @@
     </script>
 {{ elseif data:dark_light_mode == 'dark' }}
     <script type="module">
-        const dialog = document.querySelector("#cookie-dialog").shadowRoot.querySelector("dialog");
-        dialog.classList.add('dark')
+        const dialog = document.querySelector("#cookie-dialog")?.shadowRoot?.querySelector("dialog");
+        dialog?.classList.add('dark')
 
-        const dialogButton = document.querySelector("#cookie-dialog-button").shadowRoot.querySelector("button");
+        const dialogButton = document.querySelector("#cookie-dialog-button")?.shadowRoot?.querySelector("button");
         dialogButton?.classList.add('dark')
     </script>
 {{ /if }}
