@@ -58,7 +58,7 @@ function save() {
         .provide({ container, errors, saving })
         .through([
             new BeforeSaveHooks('cookie-dialog'),
-            new Request('/cp/cookie-dialog', 'PATCH'),
+            new Request(cp_url('cookie-dialog'), 'PATCH'),
             new AfterSaveHooks('cookie-dialog'),
         ])
         .then((response) => {
