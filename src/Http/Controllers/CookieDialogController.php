@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 use Statamic\Facades\Addon;
+use Statamic\Facades\Site;
 use Statamic\Facades\YAML;
 use Statamic\Http\Controllers\CP\CpController;
+use Statamic\Support\Arr;
 
 class CookieDialogController extends CpController
 {
@@ -19,40 +21,75 @@ class CookieDialogController extends CpController
      *
      * @throws Exception
      */
-    public function edit()
+    public function edit(Request $request)
     {
         abort_if(Auth::user()->cant('manage cookie dialog'), 403);
 
-        $values = CookieDialog::getContents();
-        $blueprint = CookieDialog::getBlueprint();
+        $site = $this->resolveSite($request);
+        $isDefaultSite = CookieDialog::isDefaultSite($site);
+        $blueprint = CookieDialog::getBlueprint(! $isDefaultSite);
 
-        $fields = $blueprint->fields()->addValues($values)->preProcess();
+        [$values, $meta] = $this->extractFromFields(CookieDialog::getContents($site), $blueprint);
+
+        if (! $isDefaultSite) {
+            // cookie groups are merged per group and cookie, so they can't be synced as a whole field
+            [$originValues, $originMeta] = $this->extractFromFields(CookieDialog::getContents(Site::default()->handle()), $blueprint);
+            $originValues = Arr::except($originValues, 'groups');
+            $originMeta = Arr::except($originMeta, 'groups');
+
+            $localizedFields = array_values(array_intersect(
+                array_keys(CookieDialog::getLocalizedValues($site)),
+                CookieDialog::getLocalizableFields(),
+            ));
+        }
 
         $addon = Addon::get('emplify-software/statamic-cookie-dialog');
         $isProEdition = $addon->edition() === 'pro';
 
-        return Inertia::render('statamic-cookie-dialog::settings', [
+        $viewData = [
             'blueprint' => $blueprint->toPublishArray(),
-            'initialValues' => $fields->values(),
-            'initialMeta' => $fields->meta(),
+            'initialValues' => $values,
+            'initialMeta' => $meta,
+            'site' => $site,
+            'originValues' => $originValues ?? null,
+            'originMeta' => $originMeta ?? null,
+            'localizedFields' => $localizedFields ?? [],
+            'localizations' => $this->getLocalizations($site),
+            'saveUrl' => $this->siteUrl('cookie-dialog.update', $site),
             'isProEdition' => $isProEdition,
-        ]);
+        ];
+
+        if ($request->wantsJson()) {
+            return $viewData;
+        }
+
+        return Inertia::render('statamic-cookie-dialog::settings', $viewData);
     }
 
     /**
      * Update the cookies settings.
+     *
+     * @throws Exception
      */
     public function update(Request $request)
     {
         abort_if(Auth::user()->cant('manage cookie dialog'), 403);
 
+        $site = $this->resolveSite($request);
+        $isDefaultSite = CookieDialog::isDefaultSite($site);
+
         // validate content against blueprint
-        $blueprint = CookieDialog::getBlueprint();
+        $blueprint = CookieDialog::getBlueprint(! $isDefaultSite);
         $fields = $blueprint->fields()->addValues($request->all());
         $fields->validate();
 
-        // check if no duplicate cookies exist
         $groups = collect($request->get('groups'));
+
+        if (! $isDefaultSite && ($error = $this->validateGroupStructure($groups))) {
+            return $error;
+        }
+
+        // check if no duplicate cookies exist
         $cookies = $groups->pluck('cookies')->flatMap(fn ($fields) => collect($fields)->pluck('cookie_identifier'));
         $cookieDuplicates = $cookies->duplicates();
 
@@ -87,11 +124,23 @@ class CookieDialogController extends CpController
             );
         }
 
-        $contents = YAML::dump($request->all());
-        $path = CookieDialog::getContentPath();
+        $values = $request->only($blueprint->fields()->all()->keys()->all());
+
+        // additional sites only store the overridden fields and translated cookie texts
+        if (! $isDefaultSite) {
+            $localizedFields = array_intersect($request->input('_localized', []), CookieDialog::getLocalizableFields());
+            $originGroups = CookieDialog::getContents(Site::default()->handle())['groups'] ?? [];
+
+            $values = array_filter([
+                ...Arr::only($values, $localizedFields),
+                'groups' => CookieDialog::diffGroups($originGroups, $groups->all()),
+            ], fn ($value, $key) => $key !== 'groups' || ! empty($value), ARRAY_FILTER_USE_BOTH);
+        }
+
+        $path = CookieDialog::getContentPath($site);
 
         File::ensureDirectoryExists(dirname($path));
-        File::put($path, $contents);
+        File::put($path, YAML::dump($values));
     }
 
     public function createDuplicateErrorResponse($message, $duplicates, $errors)
@@ -100,5 +149,77 @@ class CookieDialogController extends CpController
             'message' => "{$message} (".$duplicates->unique()->map(fn ($item) => '"'.$item.'"')->implode(', ').')',
             'errors' => $errors,
         ], 422);
+    }
+
+    /**
+     * Ensure the cookie groups and cookies of an additional site match the structure of the default site.
+     */
+    protected function validateGroupStructure($groups)
+    {
+        $originGroups = collect(CookieDialog::getContents(Site::default()->handle())['groups'] ?? []);
+
+        $structure = fn ($groups) => collect($groups)
+            ->mapWithKeys(fn ($group) => [
+                $group['identifier'] ?? '' => collect($group['cookies'] ?? [])->pluck('cookie_identifier')->sort()->values()->all(),
+            ])
+            ->sortKeys()
+            ->all();
+
+        if ($structure($groups) === $structure($originGroups)) {
+            return null;
+        }
+
+        return response()->json([
+            'message' => __('Cookie groups and cookies can only be added or removed on the default site.'),
+            'errors' => ['groups' => [__('Cookie groups and cookies can only be added or removed on the default site.')]],
+        ], 422);
+    }
+
+    /**
+     * Get the site that is being edited, falling back to the site selected in the control panel.
+     */
+    protected function resolveSite(Request $request): string
+    {
+        if (! Site::multiEnabled()) {
+            return Site::default()->handle();
+        }
+
+        $site = $request->input('site', Site::selected()->handle());
+
+        abort_unless(Site::authorized()->has($site), 404);
+
+        return $site;
+    }
+
+    /**
+     * Get the sites the current user can edit the cookie settings for.
+     */
+    protected function getLocalizations(string $activeSite): array
+    {
+        if (! Site::multiEnabled()) {
+            return [];
+        }
+
+        return Site::authorized()->map(fn ($site) => [
+            'handle' => $site->handle(),
+            'name' => $site->name(),
+            'active' => $site->handle() === $activeSite,
+            'origin' => CookieDialog::isDefaultSite($site->handle()),
+            'exists' => true,
+            'published' => true,
+            'url' => $this->siteUrl('cookie-dialog.edit', $site->handle()),
+        ])->values()->all();
+    }
+
+    protected function siteUrl(string $route, string $site): string
+    {
+        return cp_route($route, Site::multiEnabled() ? ['site' => $site] : []);
+    }
+
+    protected function extractFromFields(array $values, $blueprint): array
+    {
+        $fields = $blueprint->fields()->addValues($values)->preProcess();
+
+        return [$fields->values()->all(), $fields->meta()->all()];
     }
 }

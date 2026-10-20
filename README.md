@@ -369,6 +369,19 @@ English or `de` for German).
 In the translation file, you can define the mapping of the default English texts to your desired language
 (see https://laravel.com/docs/11.x/localization#using-translation-strings-as-keys for further information).
 
+## 🗺️ Multisite
+
+If [multisite](https://statamic.dev/multi-site) is enabled, the cookie dialog settings page shows a site selector in its
+sidebar, just like entries do. The settings of the default site are stored in `content/cookie-dialog/cookie-dialog.yaml`
+and are used by all other sites unless they override them.
+
+- **Customization fields** (texts, links, button and theme) can be overridden per site with the sync/desync toggle next to
+  each field. Only overridden fields are stored in `content/cookie-dialog/sites/[site].yaml`.
+- **Cookie groups and cookies** are always managed on the default site (identifiers, order, required/default state).
+  Additional sites can only translate the names, descriptions and lifetimes of groups and cookies. Only translated
+  texts are stored, so groups and cookies added on the default site immediately appear on all sites.
+- **General settings** (enabling the dialog/button and the cookie version) are shared by all sites.
+
 ## 🎨 Customizing CSS
 
 The cookie dialog and floating button are embedded inside a shadow DOM to prevent CSS conflicts with your website's styles.
