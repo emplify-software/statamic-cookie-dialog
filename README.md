@@ -359,19 +359,9 @@ If you want to allow only certain users to access the cookie dialog settings in 
 `manage cookie dialog` permission for a user's role. You may also manage this permission under the "Permissions" section
 in the control panel.
 
-## 🌐 Translations
-
-You can customize the translations of the cookie dialog by creating a new language file in the `resources/lang`
-directory of your Statamic project.
-The language file should be named `[lang].json`, where `[lang]` is the language code of the translation (e.g. `en` for
-English or `de` for German).
-
-In the translation file, you can define the mapping of the default English texts to your desired language
-(see https://laravel.com/docs/11.x/localization#using-translation-strings-as-keys for further information).
-
 ## 🗺️ Multisite
 
-If [multisite](https://statamic.dev/multi-site) is enabled, the cookie dialog settings page shows a site selector in its
+If [multisite](https://statamic.dev/control-panel/multi-site) is enabled, the cookie dialog settings page shows a site selector in its
 sidebar, just like entries do. The settings of the default site are stored in `content/cookie-dialog/cookie-dialog.yaml`
 and are used by all other sites unless they override them.
 
