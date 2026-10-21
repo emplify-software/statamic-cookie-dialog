@@ -124,11 +124,13 @@ tabs:
           -
             handle: heading
             field:
+              localizable: true
               type: text
               display: Title
               instructions: 'The title of the cookie dialog.'
           - handle: description
             field:
+              localizable: true
               remove_empty_nodes: false
               type: textarea
               display: Description
@@ -136,6 +138,7 @@ tabs:
           -
             handle: info_pages
             field:
+              localizable: true
               type: group
               display: 'Imprint and Privacy Links'
               instructions: 'Links to the imprint and privacy policy pages that are displayed in the cookie dialog.'
@@ -167,6 +170,7 @@ tabs:
           -
             handle: accept_all
             field:
+              localizable: true
               type: text
               display: 'Accept All Button'
               instructions: 'The text of the accept all button.'
@@ -174,6 +178,7 @@ tabs:
           -
             handle: save_preferences
             field:
+              localizable: true
               type: text
               display: 'Save Preferences Button'
               instructions: 'The text of the save preferences button.'
@@ -181,6 +186,7 @@ tabs:
           -
             handle: cookie_details
             field:
+              localizable: true
               type: text
               display: 'More Details Button'
               instructions: 'The text of the more details button.'
@@ -191,6 +197,7 @@ tabs:
           -
             handle: button_position
             field:
+              localizable: true
               type: select
               options:
                 bottom_right: 'Bottom Right (Fixed Position)'
@@ -203,6 +210,7 @@ tabs:
           -
             handle: button_text
             field:
+              localizable: true
               type: text
               display: 'Button Text'
               instructions: 'An optional text for the cookie dialog button displayed next to the icon.'
@@ -213,6 +221,7 @@ tabs:
           -
             handle: dark_light_mode
             field:
+              localizable: true
               type: select
               options:
                 light: 'Light Mode'
@@ -225,6 +234,7 @@ tabs:
           -
             handle: highlight_color
             field:
+              localizable: true
               type: color
               display: 'Highlight Color'
               instructions: 'The default highlight color for selected checkboxes, buttons and links.'
@@ -232,6 +242,7 @@ tabs:
           -
             handle: highlight_color_dark
             field:
+              localizable: true
               type: color
               display: 'Highlight Color (Dark Mode)'
               instructions: 'The highlight color for selected checkboxes, buttons and links in dark mode.'
