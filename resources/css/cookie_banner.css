@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/** dark mode is toggled via the .dark class (see utils/_dark_light_mode), not the system preference */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
     --font-*: initial;
     --font-sans-inherit: var(--font-sans-root, 'OpenSans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
